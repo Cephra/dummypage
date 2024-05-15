@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
+  "scripts": {
+    "start": "parcel src/index.html",
+    "clean": "rm -rf dist",
+    "build": "parcel build src/index.html"
+  }
+}

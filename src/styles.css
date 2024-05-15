@@ -1,0 +1,35 @@
+body {
+    background-color: #060606;
+    color: #859900;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.text {
+    opacity: 0;
+    filter: blur(5px);
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.text.animate {
+    animation: fadeInUnblur 1s forwards;
+}
+
+@keyframes fadeInUnblur {
+    0% {
+        opacity: 0;
+        filter: blur(5px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: none;
+    }
+}
