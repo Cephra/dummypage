@@ -7,17 +7,15 @@ document.querySelectorAll(".text>*:not(.line)").forEach((el) => {
 
   setTimeout(() => {
     const blockChar = "|";
-    el.textContent = blockChar + replacedText.substring(1);
+    el.textContent = blockChar + el.textContent.substring(1);
 
     let typedChars = 0;
     const typer = setInterval(() => {
       if (typedChars < originalTextLength - 1) {
-        const currentText = el.textContent;
-
         const newText =
           originalText.substring(0, typedChars + 1) +
           blockChar +
-          currentText.substring(typedChars + 2);
+          el.textContent.substring(typedChars + 2);
 
         el.textContent = newText;
 
