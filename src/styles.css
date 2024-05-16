@@ -6,7 +6,7 @@
     --blur-amount: 5px;
     --shadow-amount: 7px;
     --shadow-color: var(--text-color);
-    --elem-height: 100px;
+    --elem-height: 86px;
 }
 
 body {
@@ -34,6 +34,7 @@ body {
 
 .text>* {
     height: var(--elem-height);
+    margin: 0;
 }
 .text>*::selection {
     background: var(--selection-color);
