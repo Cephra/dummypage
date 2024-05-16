@@ -4,9 +4,10 @@
     --background-color: #060606;
     --selection-color: #666;
     --blur-amount: 5px;
-    --shadow-amount: 7px;
+    --shadow-amount: 5px;
     --shadow-color: var(--text-color);
-    --elem-height: 86px;
+    --elem-height: 66px;
+    --font-size: 1.66em;
 }
 
 body {
@@ -24,8 +25,7 @@ body {
 }
 
 .text {
-    font-size: xx-large;
-    opacity: 0;
+    font-size: var(--font-size);
     text-align: center;
     font-family: var(--font-family);
     animation: fadeInUnblur 1s forwards;
@@ -34,6 +34,11 @@ body {
 .text>* {
     height: var(--elem-height);
     margin: 0;
+}
+.text>*:nth-child(2) {
+    border: 1px solid #859900;
+    filter: drop-shadow(0 0 2px);
+    height: 0;
 }
 .text>*::selection {
     background: var(--selection-color);
