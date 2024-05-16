@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(
+      content="width=device-width,initial-scale=1,user-scalable=0,shrink-to-fit=no" 
+      name="viewport"
+      )
+    if title
+      title #{title} | 0x29a.me
+    else 
+      title 0x29a.me
+    link(
+      href="styles.css" 
+      rel="stylesheet"
+      )
+  body
+    .container
+      .text
+        h1 #{subtitle}
+        p #{text}

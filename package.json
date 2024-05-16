@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@parcel/transformer-pug": "^2.12.0",
     "parcel": "^2.12.0"
   },
   "scripts": {
@@ -8,7 +9,7 @@
     "build": "parcel build"
   },
   "source": [
-    "src/index.html",
-    "src/404.html"
+    "src/index.pug",
+    "src/404.pug"
   ]
 }
