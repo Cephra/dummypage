@@ -40,7 +40,7 @@ body {
     border: 1px solid #859900;
     filter: drop-shadow(0 0 2px);
     height: 0;
-    animation: loadingBar 1s forwards, fadeInUnblur 0.5s forwards;
+    animation: loadingBar 0.666s forwards, fadeInUnblur 0.3s forwards;
 }
 .text>*::selection {
     background: var(--selection-color);
