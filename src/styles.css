@@ -6,7 +6,6 @@
     --blur-amount: 5px;
     --shadow-amount: 5px;
     --shadow-color: var(--text-color);
-    --elem-height: 66px;
     --font-size: 1.66em;
 }
 
@@ -32,10 +31,10 @@ body {
 }
 
 .text>* {
-    height: var(--elem-height);
+    height: auto;
     margin: 0;
 }
-.text>*:nth-child(2) {
+.line {
     border: 1px solid #859900;
     filter: drop-shadow(0 0 2px);
     height: 0;
