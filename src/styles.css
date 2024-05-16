@@ -38,6 +38,7 @@ body {
     border: 1px solid #859900;
     filter: drop-shadow(0 0 2px);
     height: 0;
+    animation: loadingBar 1s forwards;
 }
 .text>*::selection {
     background: var(--selection-color);
@@ -54,6 +55,16 @@ body {
         opacity: 1;
         text-shadow: 0 0 var(--shadow-amount) var(--shadow-color);
         filter: blur(0px);
+    }
+}
+
+@keyframes loadingBar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
     }
 }
 
