@@ -3,6 +3,10 @@
     --text-color: #859900;
     --background-color: #060606;
     --selection-color: #666;
+    --blur-amount: 5px;
+    --shadow-amount: 7px;
+    --shadow-color: var(--text-color);
+    --elem-height: 100px;
 }
 
 body {
@@ -22,14 +26,14 @@ body {
 .text {
     font-size: xx-large;
     opacity: 0;
-    filter: blur(5px);
+    filter: blur(var(--blur-amount));
     text-align: center;
     font-family: var(--font-family);
     animation: fadeInUnblur 1s forwards;
 }
 
 .text>* {
-    height: 100px;
+    height: var(--elem-height);
 }
 .text>*::selection {
     background: var(--selection-color);
@@ -38,13 +42,13 @@ body {
 @keyframes fadeInUnblur {
     0% {
         opacity: 0;
-        text-shadow: 0 0 0 #666;
-        filter: blur(10px);
+        text-shadow: 0 0 0 var(--shadow-color);
+        filter: blur(var(--blur-amount));
     }
 
     100% {
         opacity: 1;
-        text-shadow: 0 0 8px #666;
+        text-shadow: 0 0 var(--shadow-amount) var(--shadow-color);
         filter: blur(0px);
     }
 }
