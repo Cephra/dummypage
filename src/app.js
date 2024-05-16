@@ -24,6 +24,6 @@ document.querySelectorAll(".text>*:not(.line)").forEach((el) => {
         clearInterval(typer);
         el.textContent = originalText;
       }
-    }, 150);
-  }, 500);
+    }, 0x29a/originalTextLength);
+  }, 0x29a);
 });
