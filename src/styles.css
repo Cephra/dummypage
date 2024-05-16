@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: var(--background-color);
+    background: var(--background-color);
     color: var(--text-color);
     overflow: hidden;
     margin: 0;
@@ -26,7 +26,6 @@ body {
 .text {
     font-size: xx-large;
     opacity: 0;
-    filter: blur(var(--blur-amount));
     text-align: center;
     font-family: var(--font-family);
     animation: fadeInUnblur 1s forwards;
