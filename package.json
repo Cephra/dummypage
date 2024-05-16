@@ -4,7 +4,7 @@
   },
   "scripts": {
     "start": "parcel src/index.html",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist .parcel-cache",
     "build": "parcel build src/index.html"
   }
 }
