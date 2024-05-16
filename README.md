@@ -10,7 +10,7 @@ npm run clean
 
 # Start in dev
 ```
-npm run dev
+npm run start
 ```
 
 # Build for prod
