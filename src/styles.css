@@ -1,6 +1,13 @@
+:root {
+    --font-family: "Kode Mono", monospace;
+    --text-color: #859900;
+    --background-color: #060606;
+    --selection-color: #666;
+}
+
 body {
-    background-color: #060606;
-    color: #859900;
+    background-color: var(--background-color);
+    color: var(--text-color);
     overflow: hidden;
     margin: 0;
 }
@@ -17,25 +24,28 @@ body {
     opacity: 0;
     filter: blur(5px);
     text-align: center;
-    font-family: "Kode Mono", monospace;
+    font-family: var(--font-family);
     animation: fadeInUnblur 1s forwards;
 }
 
 .text>* {
     height: 100px;
 }
+.text>*::selection {
+    background: var(--selection-color);
+}
 
 @keyframes fadeInUnblur {
     0% {
         opacity: 0;
         text-shadow: 0 0 0 #666;
-        filter: blur(5px) drop-shadow(0px 0px 0px #666);
+        filter: blur(10px);
     }
 
     100% {
         opacity: 1;
-        text-shadow: 0 0 2px #666;
-        filter: blur(0px) drop-shadow(0px 0px 1px #666);
+        text-shadow: 0 0 8px #666;
+        filter: blur(0px);
     }
 }
 
