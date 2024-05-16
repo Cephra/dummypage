@@ -7,8 +7,16 @@ html(lang="en")
       name="viewport"
       )
     if title
+      meta(
+        name="description"
+        content=title+" | 0x29a.me"
+      )
       title #{title} | 0x29a.me
     else 
+      meta(
+        name="description"
+        content="0x29a.me"
+      )
       title 0x29a.me
     link(
       href="styles.css" 
