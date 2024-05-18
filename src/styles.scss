@@ -6,6 +6,8 @@ $blur-amount: 5px;
 $shadow-amount: 5px;
 $shadow-color: $text-color;
 $font-size: 1.66em;
+$anim-time: 0.666s;
+$lighten-by: 16%;
 
 body {
     background: $background-color;
@@ -30,19 +32,6 @@ body {
 .text>*:not(.line) {
     animation: fadeInUnblur 1s forwards;
 }
-.text>* {
-    height: auto;
-    margin: 0;
-}
-.line {
-    border: 1px solid #859900;
-    filter: drop-shadow(0 0 2px);
-    height: 0;
-    animation: loadingBar 0.666s forwards, fadeInUnblur 0.3s forwards;
-}
-.text>*::selection {
-    background: $selection-color;
-}
 
 @keyframes fadeInUnblur {
     0% {
@@ -58,29 +47,53 @@ body {
     }
 }
 
-@keyframes loadingBar {
-    0% {
-        width: 0;
-    }
-
-    100% {
-        width: 100%;
-    }
-}
-
 .glow {
     animation: glow 1s forwards;
 }
 
 @keyframes glow {
     0% {
-        color: lighten($text-color, 10%);
+        color: lighten($text-color, $lighten-by);
         text-shadow: 0 0 calc($shadow-amount*2) $shadow-color;
     }
 
     100% {
         color: $text-color;
         text-shadow: 0 0 $shadow-amount $shadow-color;
+    }
+}
+
+.text>* {
+    height: auto;
+    margin: 0;
+}
+
+.text>*::selection {
+    background: $selection-color;
+}
+
+.line {
+    height: 0;
+    animation: lineglow $anim-time forwards;
+}
+
+@keyframes lineglow {
+    0% {
+        width: 0;
+        opacity: 0;
+        border: 1px solid lighten($text-color, $lighten-by);
+        filter: blur(calc($blur-amount/2)) drop-shadow(0 0 calc($blur-amount));
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
+        border: 1px solid $text-color;
+        filter: blur(0px) drop-shadow(0 0 $blur-amount);
     }
 }
 
