@@ -1,29 +1,22 @@
-document.querySelectorAll(".text>*:not(.line)").forEach((el) => {
-  const text = el.textContent;
-  const originalText = text;
-  const originalTextLength = text.length;
+const cursor = "|";
 
-  el.textContent = text.replace(/./g, "\xA0");
+document.querySelectorAll(".text>*:not(.line)").forEach((el) => {
+  const originalText = el.textContent;
+  const originalTextLength = originalText.length;
+
+  el.querySelectorAll("span").forEach((span) => (span.textContent = "\xA0"));
 
   setTimeout(() => {
-    const blockChar = "|";
-    el.textContent = blockChar + el.textContent.substring(1);
+    el.querySelectorAll("span").forEach((span, i) => {
+      setTimeout(() => {
+        span.classList.add('glow');
 
-    let typedChars = 0;
-    const typer = setInterval(() => {
-      if (typedChars < originalTextLength - 1) {
-        const newText =
-          originalText.substring(0, typedChars + 1) +
-          blockChar +
-          el.textContent.substring(typedChars + 2);
+        if (i > 0) {
+          el.childNodes[i-1].textContent = originalText.substring(i-1, i);
+        }
 
-        el.textContent = newText;
-
-        typedChars += 1;
-      } else {
-        clearInterval(typer);
-        el.textContent = originalText;
-      }
-    }, 0x29a/originalTextLength);
+        span.textContent = (i < originalTextLength-1) ? cursor : originalText.substring(i, i+1);
+      }, (0x29a/originalTextLength)*i)
+    });
   }, 0x29a);
 });
