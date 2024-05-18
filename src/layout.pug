@@ -19,7 +19,7 @@ html(lang="en")
       )
       title 0x29a.me
     link(
-      href="styles.css" 
+      href="styles.scss" 
       rel="stylesheet"
       )
     script(
@@ -29,6 +29,10 @@ html(lang="en")
   body
     .container
       .text
-        h1 #{subtitle}
+        h1
+          each char in subtitle
+            span #{char}
         .line
-        p #{text}
+        p
+          each char in text
+            span #{char}
