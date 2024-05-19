@@ -47,8 +47,19 @@ body {
     }
 }
 
-.text>*:not(.line) {
-    animation: fadeInUnblur 1s forwards;
+.text {
+    >*:not(.line) {
+        animation: fadeInUnblur 1s forwards;
+    }
+
+    >* {
+        height: auto;
+        margin: 0;
+    }
+
+    >*::selection {
+        background: $selection-color;
+    }
 }
 
 @keyframes fadeInUnblur {
@@ -79,15 +90,6 @@ body {
         color: $text-color;
         text-shadow: 0 0 $shadow-amount $shadow-color;
     }
-}
-
-.text>* {
-    height: auto;
-    margin: 0;
-}
-
-.text>*::selection {
-    background: $selection-color;
 }
 
 .line {
