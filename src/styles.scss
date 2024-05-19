@@ -21,38 +21,43 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
 
-.text {
-    font-size: $font-size;
-    text-align: center;
-    font-family: $font-family;
+    .text {
+        font-size: $font-size;
+        text-align: center;
+        font-family: $font-family;
 
-    >*:not(.line) {
-        animation: fadeInUnblur 1s forwards;
+        &>*:not(.line) {
+            .glow {
+                animation: glow 1s forwards;
+            }
+
+            margin: 0;
+            height: auto;
+            animation: fadeInUnblur 1s forwards;
+        }
+
+        &>.line {
+            height: 0;
+            animation: lineglow $anim-time forwards;
+        }
+
+        ::selection {
+            background: $selection-color;
+        }
+
+        @media screen and (min-width: 720px) {
+            font-size: calc($font-size*2);
+        }
+
+        @media screen and (min-width: 1280px) {
+            font-size: calc($font-size*3);
+        }
+
+        @media screen and (min-width: 1920) {
+            font-size: calc($font-size*4);
+        }
     }
-
-    >* {
-        height: auto;
-        margin: 0;
-    }
-
-    >*::selection {
-        background: $selection-color;
-    }
-
-    @media screen and (min-width: 720px) {
-        font-size: calc($font-size*2);
-    }
-
-    @media screen and (min-width: 1280px) {
-        font-size: calc($font-size*3);
-    }
-
-    @media screen and (min-width: 1920) {
-        font-size: calc($font-size*4);
-    }
-
 }
 
 @keyframes fadeInUnblur {
@@ -69,10 +74,6 @@ body {
     }
 }
 
-.glow {
-    animation: glow 1s forwards;
-}
-
 @keyframes glow {
     0% {
         color: lighten($text-color, $lighten-by);
@@ -83,11 +84,6 @@ body {
         color: $text-color;
         text-shadow: 0 0 $shadow-amount $shadow-color;
     }
-}
-
-.line {
-    height: 0;
-    animation: lineglow $anim-time forwards;
 }
 
 @keyframes lineglow {
