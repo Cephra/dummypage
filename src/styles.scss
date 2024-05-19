@@ -27,27 +27,7 @@ body {
     font-size: $font-size;
     text-align: center;
     font-family: $font-family;
-}
 
-@media screen and (min-width: 720px) {
-    .text {
-        font-size: calc($font-size*2);
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .text {
-        font-size: calc($font-size*3);
-    }
-}
-
-@media screen and (min-width: 1920) {
-    .text {
-        font-size: calc($font-size*4);
-    }
-}
-
-.text {
     >*:not(.line) {
         animation: fadeInUnblur 1s forwards;
     }
@@ -60,6 +40,19 @@ body {
     >*::selection {
         background: $selection-color;
     }
+
+    @media screen and (min-width: 720px) {
+        font-size: calc($font-size*2);
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: calc($font-size*3);
+    }
+
+    @media screen and (min-width: 1920) {
+        font-size: calc($font-size*4);
+    }
+
 }
 
 @keyframes fadeInUnblur {
