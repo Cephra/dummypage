@@ -1,6 +1,6 @@
 const cursor = "|";
 
-document.querySelectorAll(".text>*:not(.line)").forEach((el) => {
+document.querySelectorAll(".text>*:not(.line)").forEach((el, i) => {
   const originalText = el.textContent;
   const originalTextLength = originalText.length;
   const timeout = 0x29a / originalTextLength;
@@ -24,5 +24,5 @@ document.querySelectorAll(".text>*:not(.line)").forEach((el) => {
         }
       }, timeout * i);
     });
-  }, 0x29a);
+  }, 0x29a * (i + 1));
 });
