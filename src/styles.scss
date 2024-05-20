@@ -33,7 +33,7 @@ body {
       }
 
       .fadetext {
-        animation: fadeInUnblur $anim-time forwards;
+        animation: fadeInUnblur $anim-time forwards, glow $anim-time forwards;
       }
 
       margin: 0;
