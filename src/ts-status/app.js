@@ -1,4 +1,4 @@
-import { hideAllTexts, typeAllElems } from "./util";
+import { hideAllTexts, typeAllElems } from "../util";
 
 import axios from "axios";
 

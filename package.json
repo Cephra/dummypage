@@ -13,7 +13,7 @@
   },
   "source": [
     "src/index.pug",
-    "src/ts-status.pug",
+    "src/ts-status/index.pug",
     "src/404.pug"
   ]
 }
