@@ -2,6 +2,8 @@ import { hideAllTexts, typeElem } from "../util";
 
 import axios from "axios";
 
+const retryInterval = 0x29a*0x1ff;
+
 async function updateClientCount() {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   const filteredClients = clients.data.body.filter(
@@ -26,7 +28,7 @@ async function updateClientCount() {
 async function retry() {
   setTimeout(() => {
     requestAnimationFrame(updateClientCount);
-  }, 0x29a * 0x1ff);
+  }, retryInterval);
 }
 
 async function runner() {
