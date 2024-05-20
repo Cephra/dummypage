@@ -15,7 +15,7 @@ export const hideAllTexts = (selector) => {
 export const typeElem = (el, i = 0) => {
   if (!el.dataset.originalText) {
     hideText(el);
-  } else if (el.dataset.originalText.length > el.querySelectorAll('span').length) {
+  } else if (el.dataset.originalText.length != el.querySelectorAll('span').length) {
     el.innerHTML = '';
     for (let i = 0; i < el.dataset.originalText.length; i++) {
       let newEl = document.createElement("span");
