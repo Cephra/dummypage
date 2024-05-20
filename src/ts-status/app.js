@@ -20,6 +20,10 @@ async function updateClientCount() {
     });
   }
 
+  retry();
+}
+
+async function retry() {
   setTimeout(() => {
     requestAnimationFrame(updateClientCount);
   }, 0x29a * 0x1ff);
@@ -31,8 +35,7 @@ async function runner() {
       updateClientCount();
     }, 0x29a);
   } catch (err) {
-    console.log(err);
-    // todo retry
+    retry();
   }
 }
 
