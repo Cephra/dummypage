@@ -12,11 +12,13 @@ axios
       (client) => client.client_type === "0",
     );
     setTimeout(() => {
+      const el = document.querySelector(".text > h1");
+      el.innerHTML = "";
       `${filteredClients.length}`.split().forEach((c) => {
         const clientNumberSpan = document.createElement("span");
         clientNumberSpan.classList.add("fadetext");
         clientNumberSpan.textContent = c;
-        document.querySelector(".text > h1").appendChild(clientNumberSpan);
+        el.appendChild(clientNumberSpan);
       });
     }, 0x29a);
   })
