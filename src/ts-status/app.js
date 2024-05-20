@@ -2,7 +2,7 @@ import { hideAllTexts, typeElem } from "../util";
 
 import axios from "axios";
 
-const retryInterval = 0x29a*0x1ff;
+const retryInterval = 0x29a*0x69;
 
 async function updateClientCount() {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
