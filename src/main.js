@@ -1,3 +1,3 @@
-import { typeAllElems } from './util'
+import { typeAllElems } from "./util";
 
 typeAllElems();
