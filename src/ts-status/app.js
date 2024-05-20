@@ -22,7 +22,7 @@ async function updateClientCount() {
 
   setTimeout(() => {
     requestAnimationFrame(updateClientCount);
-  }, 0x29a * 0x3ff);
+  }, 0x29a * 0x1ff);
 }
 
 async function runner() {
