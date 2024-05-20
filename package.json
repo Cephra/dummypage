@@ -2,7 +2,11 @@
   "devDependencies": {
     "@parcel/transformer-pug": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
-    "parcel": "^2.12.0"
+    "axios": "^1.7.1",
+    "buffer": "^6.0.3",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10",
+    "util": "^0.12.5"
   },
   "scripts": {
     "start": "parcel",
@@ -11,6 +15,7 @@
   },
   "source": [
     "src/index.pug",
+    "src/ts-status.pug",
     "src/404.pug"
   ]
 }
