@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "parcel",
-    "clean": "rm -rf dist .parcel-cache",
+    "clean": "rm -rf dist",
     "build": "parcel build"
   },
   "source": [
