@@ -12,6 +12,30 @@ export const hideAllTexts = (selector) => {
   document.querySelectorAll(selector || allSelector).forEach(hideText);
 };
 
+const createTyper = (originalText, el) => {
+  const originalTextLength = originalText.length;
+  const timeout = 0x29a / originalTextLength;
+
+  return () => {
+    el.querySelectorAll("span").forEach((span, i) => {
+      setTimeout(() => {
+        span.textContent = cursor;
+        span.classList.add("glow");
+
+        if (i > 0) {
+          el.childNodes[i - 1].textContent = originalText.substring(i - 1, i);
+        }
+
+        if (i === originalTextLength - 1) {
+          setTimeout(() => {
+            span.textContent = originalText.substring(i, i + 1);
+          }, timeout);
+        }
+      }, timeout * i);
+    });
+  };
+}
+
 export const typeElem = (el, i = 0) => {
   if (!el.dataset.originalText) {
     hideText(el);
@@ -25,29 +49,11 @@ export const typeElem = (el, i = 0) => {
       el.appendChild(newEl);
     }
   }
+
   const originalText = el.dataset.originalText || el.textContent;
-  const originalTextLength = originalText.length;
-  const timeout = 0x29a / originalTextLength;
 
   setTimeout(
-    () => {
-      el.querySelectorAll("span").forEach((span, i) => {
-        setTimeout(() => {
-          span.textContent = cursor;
-          span.classList.add("glow");
-
-          if (i > 0) {
-            el.childNodes[i - 1].textContent = originalText.substring(i - 1, i);
-          }
-
-          if (i === originalTextLength - 1) {
-            setTimeout(() => {
-              span.textContent = originalText.substring(i, i + 1);
-            }, timeout);
-          }
-        }, timeout * i);
-      });
-    },
+    createTyper(originalText, el),
     0x29a * (i + 1),
   );
 };
