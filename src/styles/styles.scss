@@ -7,6 +7,10 @@ body {
   color: $text-color;
   overflow: hidden;
   margin: 0;
+
+  ::selection {
+    background: $selection-color;
+  }
 }
 
 .container {
@@ -15,9 +19,6 @@ body {
   align-items: center;
   height: 100vh;
 
-  ::selection {
-    background: $selection-color;
-  }
 
   .text {
     font-size: $font-size;
