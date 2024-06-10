@@ -13,8 +13,8 @@
     "build": "parcel build"
   },
   "source": [
-    "src/index.pug",
-    "src/ts-status/index.pug",
-    "src/404.pug"
+    "src/pug/index.pug",
+    "src/pug/ts-status/index.pug",
+    "src/pug/404.pug"
   ]
 }
