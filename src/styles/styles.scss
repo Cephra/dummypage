@@ -1,0 +1,58 @@
+@import "variables.scss";
+@import "./animations.scss";
+@import "./fonts.scss";
+
+body {
+  background: $background-color;
+  color: $text-color;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  ::selection {
+    background: $selection-color;
+  }
+
+  .text {
+    font-size: $font-size;
+    text-align: center;
+    font-family: $font-family;
+
+    & > *:not(.line) {
+      .glow {
+        animation: glow $anim-time forwards;
+      }
+
+      .fadetext {
+        animation: fadeInUnblur $anim-time forwards, glow $anim-time forwards;
+      }
+
+      margin: 0;
+      height: auto;
+      animation: fadeInUnblur $anim-time forwards;
+    }
+
+    & > .line {
+      height: 0;
+      animation: lineglow $anim-time forwards;
+    }
+
+    @media screen and (min-width: 720px) {
+      font-size: calc($font-size * 2);
+    }
+
+    @media screen and (min-width: 1280px) {
+      font-size: calc($font-size * 3);
+    }
+
+    @media screen and (min-width: 1920) {
+      font-size: calc($font-size * 4);
+    }
+  }
+}
