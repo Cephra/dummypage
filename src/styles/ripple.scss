@@ -1,0 +1,16 @@
+$square: 100vw*2;
+
+.ripple {
+  position: absolute;
+  background-color: #859900;
+
+  opacity: 0.8;
+  filter: blur($blur-amount);
+
+  width: $square;
+  height: $square;
+
+  border-radius: 50%;
+
+  animation: ripple $anim-time infinite;
+}
