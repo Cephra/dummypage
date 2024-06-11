@@ -100,3 +100,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   src: url("/fonts/KodeMono-Regular.ttf") format("truetype");
   font-display: swap;
 }
+
+$fa-font-path: '/node_modules/@fortawesome/fontawesome-free/webfonts';
+@import '/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '/node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
