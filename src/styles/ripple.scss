@@ -8,6 +8,8 @@
   height: $square;
 
   border-radius: 50%;
+  
+  pointer-events: none;
 
   opacity: 0.8;
   filter: blur($blur-amount);
