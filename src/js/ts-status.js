@@ -5,6 +5,7 @@ import axios from "axios";
 
 const retryInterval = 0x29a*0x69;
 
+let firstMeterFetch = true;
 async function updateClientCount() {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   const filteredClients = clients.data.body.filter(
@@ -21,7 +22,12 @@ async function updateClientCount() {
       clientNumberSpan.textContent = c;
       el.appendChild(clientNumberSpan);
     });
-    rippleCenter(el);
+
+    if (firstMeterFetch) {
+      firstMeterFetch = false;
+    } else {
+      rippleCenter(el);
+    }
   }
   retry();
 }
