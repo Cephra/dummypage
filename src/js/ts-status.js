@@ -1,4 +1,5 @@
 import { hideAllTexts, typeElem } from "./util";
+import { rippleCenter } from "./rippler";
 
 import axios from "axios";
 
@@ -20,8 +21,8 @@ async function updateClientCount() {
       clientNumberSpan.textContent = c;
       el.appendChild(clientNumberSpan);
     });
+    rippleCenter(el);
   }
-
   retry();
 }
 
