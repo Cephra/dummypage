@@ -5,7 +5,7 @@ import axios from "axios";
 
 const retryInterval = 0x29a*0x69;
 
-let firstMeterFetch = true;
+let firstFetch = true;
 async function updateClientCount() {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   const filteredClients = clients.data.body.filter(
@@ -23,8 +23,8 @@ async function updateClientCount() {
       el.appendChild(clientNumberSpan);
     });
 
-    if (firstMeterFetch) {
-      firstMeterFetch = false;
+    if (firstFetch) {
+      firstFetch = false;
     } else {
       rippleCenter(el);
     }
