@@ -47,8 +47,10 @@ async function runner() {
     retry();
   }
 }
+runner();
 
 hideAllTexts();
 typeElem(document.querySelector(".text > p"));
-
-runner();
+setTimeout(() => {
+  typeElem(document.querySelector(".hint"));
+}, retryInterval/0x69);

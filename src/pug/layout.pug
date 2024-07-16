@@ -46,3 +46,7 @@ html(lang="en")
         p
           each char in text
             span #{char}
+        if hint
+          p.hint
+            each char in hint
+              span #{char}
