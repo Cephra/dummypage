@@ -26,6 +26,10 @@ body {
     font-family: $font-family;
 
     & > *:not(.line) {
+      margin: 0;
+      height: auto;
+      animation: fadeInUnblur $anim-time forwards;
+
       .glow {
         animation: glow $anim-time forwards;
       }
@@ -33,10 +37,6 @@ body {
       .fadetext {
         animation: fadeInUnblur $anim-time forwards, glow $anim-time forwards;
       }
-
-      margin: 0;
-      height: auto;
-      animation: fadeInUnblur $anim-time forwards;
     }
 
     & > .line {
