@@ -24,6 +24,7 @@ body {
     font-size: $font-size;
     text-align: center;
     font-family: $font-family;
+    width: 80vw;
 
     & > *:not(.line) {
       margin: 0;
