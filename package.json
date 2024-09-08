@@ -16,6 +16,7 @@
   "source": [
     "src/pug/index.pug",
     "src/pug/ts-status/index.pug",
-    "src/pug/404.pug"
+    "src/pug/404.pug",
+    "src/pug/ts-status/player-list.pug"
   ]
 }
