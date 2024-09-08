@@ -1,9 +1,9 @@
-import { hideAllTexts, typeElem } from "./util";
 import { rippleCenter } from "./rippler";
+import { createTyper } from "./typer";
 
 import axios from "axios";
 
-const retryInterval = 0x29a*0x69;
+const retryInterval = 0x29a * 0x69;
 
 let firstFetch = true;
 async function updateClientCount() {
@@ -40,17 +40,19 @@ async function retry() {
 
 async function runner() {
   try {
-    setTimeout(() => {
-      updateClientCount();
-    }, 0x29a);
+    updateClientCount();
   } catch (err) {
     retry();
   }
+
+  const typers = [
+    createTyper(document.querySelector(".text > p")),
+    createTyper(document.querySelector(".hint")),
+  ];
+  typers.forEach(async (typer) => await typer.hide());
+  setTimeout(async () => {
+    await typers[0].type();
+    await typers[1].type();
+  }, 0x29a);
 }
 runner();
-
-hideAllTexts();
-typeElem(document.querySelector(".text > p"));
-setTimeout(() => {
-  typeElem(document.querySelector(".hint"));
-}, retryInterval/0x69);
