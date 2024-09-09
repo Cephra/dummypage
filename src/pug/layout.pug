@@ -39,14 +39,8 @@ html(lang="en")
   body
     .container
       .text
-        h1
-          each char in subtitle
-            span #{char}
+        h1 #{subtitle}
         .line
-        p
-          each char in text
-            span #{char}
+        p #{text}
         if hint
-          p.hint
-            each char in hint
-              span #{char}
+          p.hint #{hint}
