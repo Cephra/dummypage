@@ -29,20 +29,20 @@ export const createTyper = (elem: HTMLElement) => {
       } else {
         elems = Array.from(elem.querySelectorAll("span"));
       }
-      let prevLetterElem: HTMLElement | null = null;
+      let prevElem: HTMLElement | null = null;
       for (const [i, elem] of Array.from(elems.entries())) {
         elem.textContent = CURSOR;
         elem.classList.add("glow");
 
-        if (prevLetterElem) {
-          prevLetterElem.textContent = splittedText[i - 1];
+        if (prevElem) {
+          prevElem.textContent = splittedText[i - 1];
         }
 
-        prevLetterElem = elem;
+        prevElem = elem;
 
         await sleep(timeout);
       }
-      prevLetterElem.textContent = splittedText.at(-1);
+      prevElem.textContent = splittedText.at(-1);
     },
     async untype() {
       // TODO reverse typing effect
