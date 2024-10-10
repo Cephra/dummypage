@@ -30,16 +30,26 @@ a {
     text-align: center;
     font-family: $font-family;
     width: 80vw;
-    
-    & > a {
+
+    &>a {
+      &:hover {
+        transform: scale(1.2);
+      }
+
       opacity: 0;
-      animation-delay: $anim-time*3 !important;
+      transition: transform $anim-time;
+      display: inline-block;
+      animation: fadeInUnblur $anim-time forwards;
+      animation-delay: $anim-time*3;
     }
 
-    & > *:not(.line) {
+    &>*:not(.line) {
       margin: 0;
       height: auto;
-      animation: fadeInUnblur $anim-time forwards;
+
+      &:not(a) {
+        animation: fadeInUnblur $anim-time forwards;
+      }
 
       .glow {
         animation: glow $anim-time forwards;
@@ -50,11 +60,11 @@ a {
       }
     }
 
-    & > .line {
+    &>.line {
       height: 0;
       animation: lineglow $anim-time forwards;
     }
-    
+
     .hint {
       font-size: calc($font-size * 0.357);
     }
