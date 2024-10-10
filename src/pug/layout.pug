@@ -26,12 +26,7 @@ html(lang="en")
       href="/src/styles/styles.scss" 
       rel="stylesheet"
       )
-    if script
-      script(
-        src=script
-        type="module"
-      )
-    else 
+    block scripts
       script(
         src="/src/js/main.js"
         type="module"
@@ -40,8 +35,9 @@ html(lang="en")
     block content
       .container
         .text
-          h1 #{subtitle}
-          .line
-          p #{text}
-          if hint
-            p.hint #{hint}
+          block text
+            h1 #{subtitle}
+            .line
+            p #{text}
+            if hint
+              p.hint #{hint}
