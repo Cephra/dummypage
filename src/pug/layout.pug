@@ -37,10 +37,11 @@ html(lang="en")
         type="module"
       )
   body
-    .container
-      .text
-        h1 #{subtitle}
-        .line
-        p #{text}
-        if hint
-          p.hint #{hint}
+    block content
+      .container
+        .text
+          h1 #{subtitle}
+          .line
+          p #{text}
+          if hint
+            p.hint #{hint}

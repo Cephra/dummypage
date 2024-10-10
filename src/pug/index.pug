@@ -1,5 +1,6 @@
-- var subtitle = "0x29a.me"
-- var text = "nothing to see here"
-- var hint = "unless you click somewhere ;)"
+extends layout.pug
 
-include ./layout.pug
+block prepend content
+    - var subtitle = "0x29a.me"
+    - var text = "nothing to see here"
+    - var hint = "unless you click somewhere ;)"
