@@ -14,6 +14,11 @@ body {
   }
 }
 
+a {
+  color: $text-color;
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -25,6 +30,11 @@ body {
     text-align: center;
     font-family: $font-family;
     width: 80vw;
+    
+    & > a {
+      opacity: 0;
+      animation-delay: $anim-time*3 !important;
+    }
 
     & > *:not(.line) {
       margin: 0;

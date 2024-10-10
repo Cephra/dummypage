@@ -1,5 +1,6 @@
-- var title = "404 not found"
-- var subtitle = "404"
-- var text = "not found"
+extends layout.pug
 
-include ./layout.pug
+block prepend content
+    - var title = "404 not found"
+    - var subtitle = "404"
+    - var text = "not found"
