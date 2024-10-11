@@ -43,7 +43,7 @@ a {
       transition: transform $anim-time, color $anim-time;
       display: inline-block;
       animation: fadeInUnblur $anim-time forwards;
-      animation-delay: $anim-time*3;
+      animation-delay: $anim-time*4;
     }
 
     &>*:not(.line) {
@@ -64,8 +64,14 @@ a {
     }
 
     &>.line {
-      height: 0;
+      height: $horizontal-line-height;
+      box-sizing: border-box;
       animation: lineglow $anim-time forwards;
+    }
+
+    &>.line2 {
+      animation-delay: $anim-time*3;
+      margin-bottom: $margin-bottom;
     }
 
     .hint {

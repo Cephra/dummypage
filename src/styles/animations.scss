@@ -29,13 +29,13 @@
 @keyframes lineglow {
   0% {
     width: 0;
-    border: 1px solid color.scale($text-color, $lightness: $lighten-by);
+    border: calc($horizontal-line-height/2) solid color.scale($text-color, $lightness: $lighten-by);
     filter: blur($blur-amount) drop-shadow(0 0 $blur-amount);
   }
 
   100% {
     width: 100%;
-    border: 1px solid $text-color;
+    border: calc($horizontal-line-height/2) solid $text-color;
     filter: blur(0px) drop-shadow(0 0 $blur-amount);
   }
 }
