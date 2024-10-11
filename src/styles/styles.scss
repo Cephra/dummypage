@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import "variables.scss";
 @import "./animations.scss";
 @import "./ripple.scss";
@@ -34,10 +36,11 @@ a {
     &>a {
       &:hover {
         transform: scale(1.2);
+        color: color.scale($text-color, $lightness: $lighten-by);
       }
 
       opacity: 0;
-      transition: transform $anim-time;
+      transition: transform $anim-time, color $anim-time;
       display: inline-block;
       animation: fadeInUnblur $anim-time forwards;
       animation-delay: $anim-time*3;
