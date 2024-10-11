@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @keyframes fadeInUnblur {
   0% {
     opacity: 0;
@@ -14,7 +16,7 @@
 
 @keyframes glow {
   0% {
-    color: lighten($text-color, $lighten-by);
+    color: color.scale($text-color, $lightness: $lighten-by);
     text-shadow: 0 0 calc($shadow-amount * 2) $shadow-color;
   }
 
@@ -27,7 +29,7 @@
 @keyframes lineglow {
   0% {
     width: 0;
-    border: 1px solid lighten($text-color, $lighten-by);
+    border: 1px solid color.scale($text-color, $lightness: $lighten-by);
     filter: blur($blur-amount) drop-shadow(0 0 $blur-amount);
   }
 
