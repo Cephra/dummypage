@@ -1,6 +1,7 @@
 const CURSOR = "|";
 const NBSP = "\xA0";
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+import { sleep } from "./util";
 
 export const createTyper = (elem: HTMLElement) => {
   const text = elem.textContent?.trim() ?? "";
