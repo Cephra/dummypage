@@ -6,14 +6,19 @@ import axios from "axios";
 
 const retryInterval = 0x29a * 0x69;
 
+const playerList = {}
+async function updatePlayerList(playerlist) {
+
+}
+
 let firstFetch = true;
 async function updateClientCount() {
-  let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
+  const clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   const filteredClients = clients.data.body.filter(
     (client) => client.client_type === "0",
   );
   const el = document.querySelector(".text > h1");
-  let filteredClientsLength = filteredClients.length.toString();
+  const filteredClientsLength = filteredClients.length.toString();
 
   if (el.textContent !== filteredClientsLength) {
     el.innerHTML = "";
