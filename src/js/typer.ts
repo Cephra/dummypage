@@ -45,8 +45,23 @@ export const createTyper = (elem: HTMLElement) => {
       prevElem.textContent = splittedText.at(-1);
     },
     async untype() {
-      // TODO reverse typing effect
-      console.log("not implemented yet");
+      const elems = Array.from(elem.querySelectorAll("span"));
+
+      let prevElem = null;
+
+      for (const elem of elems.toReversed()) {
+        elem.textContent = CURSOR;
+
+        if (prevElem) {
+          prevElem.textContent = NBSP;
+        }
+
+        prevElem = elem;
+
+        await sleep(timeout);
+      }
+
+      prevElem.textContent = NBSP;
     },
   };
 
