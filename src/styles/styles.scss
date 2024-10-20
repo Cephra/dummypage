@@ -48,10 +48,17 @@ a {
       transition: transform $anim-time, color $anim-time;
       display: inline-block;
       animation: fadeInUnblur $anim-time forwards;
-      animation-delay: $anim-time*4;
+      animation-delay: $anim-time*3;
+    }
+    
+    .subcontainer {
+      border-radius: 15px;
+      border: 3px solid $text-color;
+      animation: lineglow $anim-time forwards;
+      box-sizing: border-box;
     }
 
-    &>*:not(.line) {
+    .textcontainer > *, .subcontainer > * {
       margin: 0;
       height: auto;
 
@@ -66,17 +73,6 @@ a {
       .fadetext {
         animation: fadeInUnblur $anim-time forwards, glow $anim-time forwards;
       }
-    }
-
-    &>.line {
-      height: $horizontal-line-height;
-      box-sizing: border-box;
-      animation: lineglow $anim-time forwards;
-    }
-
-    &>.line2 {
-      animation-delay: $anim-time*3;
-      margin-bottom: $margin-bottom;
     }
 
     .hint {

@@ -3,7 +3,7 @@ import { createTyper } from "./typer";
 
 async function main() {
   const typers = Array.from(
-    document.querySelectorAll(".text>*:not(.line)"),
+    document.querySelectorAll(".textcontainer > *, .subcontainer > *"),
   ).map((el) => createTyper(el));
   typers.forEach(async (typer) => await typer.hide());
   setTimeout(async () => {
