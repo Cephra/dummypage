@@ -11,7 +11,7 @@ async function updateClientCount() {
   const filteredClients = clients.data.body.filter(
     (client) => client.client_type === "0",
   );
-  const el = document.querySelector(".text > h1");
+  const el = document.querySelector(".textcontainer > h1");
   let filteredClientsLength = filteredClients.length.toString();
 
   if (el.textContent !== filteredClientsLength) {
