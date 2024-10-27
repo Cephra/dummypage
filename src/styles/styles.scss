@@ -50,8 +50,23 @@ a {
       animation: fadeInUnblur $anim-time forwards;
       animation-delay: $anim-time*4;
     }
+    
+    .subcontainer {
+      opacity: 0;
+      width: 0;
+      max-height: 0;
+      padding-bottom: 0;
+      border-radius: 15px;
+      border: 3px solid $text-color;
+      animation: lineglow $anim-time forwards;
+      animation-delay: $anim-time;
+      box-sizing: border-box;
+      transition: max-height $anim-time;
+      box-shadow: 0 0 $shadow-amount $text-color;
+      margin-bottom: $shadow-amount;
+    }
 
-    &>*:not(.line) {
+    .textcontainer > *, .subcontainer > * {
       margin: 0;
       height: auto;
 
@@ -66,17 +81,6 @@ a {
       .fadetext {
         animation: fadeInUnblur $anim-time forwards, glow $anim-time forwards;
       }
-    }
-
-    &>.line {
-      height: $horizontal-line-height;
-      box-sizing: border-box;
-      animation: lineglow $anim-time forwards;
-    }
-
-    &>.line2 {
-      animation-delay: $anim-time*3;
-      margin-bottom: $margin-bottom;
     }
 
     .hint {

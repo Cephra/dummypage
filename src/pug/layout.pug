@@ -36,8 +36,10 @@ html(lang="en")
       .container
         .text
           block text
-            h1 #{subtitle}
-            .line
-            p #{text}
-            if hint
-              p.hint #{hint}
+            .textcontainer
+              h1 #{subtitle}
+            .subcontainer
+              block subcontainer
+                p #{text}
+                if hint
+                  p.hint #{hint}

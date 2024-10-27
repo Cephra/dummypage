@@ -11,7 +11,7 @@ async function updateClientCount() {
   const filteredClients = clients.data.body.filter(
     (client) => client.client_type === "0",
   );
-  const el = document.querySelector(".text > h1");
+  const el = document.querySelector(".textcontainer > h1");
   let filteredClientsLength = filteredClients.length.toString();
 
   if (el.textContent !== filteredClientsLength) {
@@ -46,13 +46,13 @@ async function runner() {
   }
 
   const typers = [
-    createTyper(document.querySelector(".text > p")),
+    createTyper(document.querySelector(".subcontainer > p")),
     createTyper(document.querySelector(".hint")),
   ];
   typers.forEach(async (typer) => await typer.hide());
   setTimeout(async () => {
     await typers[0].type();
     await typers[1].type();
-  }, 0x29a);
+  }, 0x29a*2);
 }
 runner();
