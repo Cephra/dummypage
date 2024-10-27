@@ -57,7 +57,6 @@ a {
       opacity: 0;
       width: 0;
       max-height: 0;
-      padding-bottom: 0;
       border-radius: 15px;
       border: 3px solid $text-color;
       animation: lineglow $anim-time forwards;
@@ -65,7 +64,7 @@ a {
       box-sizing: border-box;
       transition: max-height $anim-time;
       box-shadow: 0 0 $shadow-amount $text-color;
-      margin-bottom: $shadow-amount;
+      margin-bottom: $margin-bottom;
     }
 
     .textcontainer > *, .subcontainer > * {
