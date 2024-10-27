@@ -48,7 +48,7 @@ async function runner() {
   
   document.querySelector('#shareButton').addEventListener('click', async () => {
     const shareData = {
-      text: `There are currently ${clientCount} clients in teamspeak.`,
+      url: `There are currently ${clientCount} clients in teamspeak.`,
     };
     if (navigator.canShare(shareData)) {
       await navigator.share(shareData);
