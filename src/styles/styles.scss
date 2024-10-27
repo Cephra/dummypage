@@ -61,6 +61,8 @@ a {
       animation: lineglow $anim-time forwards;
       animation-delay: $anim-time;
       box-sizing: border-box;
+      transition: max-height $anim-time;
+      box-shadow: 0 0 $shadow-amount $text-color;
     }
 
     .textcontainer > *, .subcontainer > * {
