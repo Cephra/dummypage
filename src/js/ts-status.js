@@ -46,7 +46,7 @@ async function runner() {
     retry();
   }
   
-  document.querySelector('#shareButton').addEventListener('click', async () => {
+  document.querySelector('#shareButton')?.addEventListener('click', async () => {
     const shareData = {
       url: `There are currently ${clientCount} clients in teamspeak.`,
     };
