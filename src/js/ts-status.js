@@ -48,7 +48,6 @@ async function runner() {
   
   document.querySelector('#shareButton').addEventListener('click', async () => {
     await navigator.share({
-      title: "TeamSpeak status",
       text: `There are currently ${clientCount} clients in teamspeak.`,
     });
   });
