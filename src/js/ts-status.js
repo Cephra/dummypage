@@ -6,17 +6,18 @@ import axios from "axios";
 const retryInterval = 0x29a * 0x69;
 
 let firstFetch = true;
+let clientCount = 0;
 async function updateClientCount() {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   const filteredClients = clients.data.body.filter(
     (client) => client.client_type === "0",
   );
   const el = document.querySelector(".textcontainer > h1");
-  let filteredClientsLength = filteredClients.length.toString();
+  clientCount = filteredClients.length.toString();
 
-  if (el.textContent !== filteredClientsLength) {
+  if (el.textContent !== clientCount) {
     el.innerHTML = "";
-    filteredClientsLength.split().forEach((c) => {
+    clientCount.split().forEach((c) => {
       const clientNumberSpan = document.createElement("span");
       clientNumberSpan.classList.add("fadetext");
       clientNumberSpan.textContent = c;
