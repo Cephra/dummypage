@@ -50,7 +50,6 @@ async function runner() {
     await navigator.share({
       title: "TeamSpeak status",
       text: `There are currently ${clientCount} clients in teamspeak.`,
-      url: "https://ts.0x29a.me/",
     });
   });
   
