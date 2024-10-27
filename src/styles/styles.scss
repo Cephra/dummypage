@@ -54,6 +54,14 @@ a {
     }
     
     .subcontainer {
+      *:first-child {
+        margin-top: $blur-amount;
+      }
+
+      *:last-child {
+        margin-bottom: $blur-amount;
+      }
+      
       opacity: 0;
       width: 0;
       max-height: 0;
