@@ -46,13 +46,13 @@ async function runner() {
   }
 
   const typers = [
-    createTyper(document.querySelector(".text > p")),
+    createTyper(document.querySelector(".subcontainer > p")),
     createTyper(document.querySelector(".hint")),
   ];
   typers.forEach(async (typer) => await typer.hide());
   setTimeout(async () => {
     await typers[0].type();
     await typers[1].type();
-  }, 0x29a);
+  }, 0x29a*2);
 }
 runner();
