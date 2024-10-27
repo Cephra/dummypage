@@ -63,6 +63,7 @@ a {
       box-sizing: border-box;
       transition: max-height $anim-time;
       box-shadow: 0 0 $shadow-amount $text-color;
+      margin-bottom: $shadow-amount;
     }
 
     .textcontainer > *, .subcontainer > * {
