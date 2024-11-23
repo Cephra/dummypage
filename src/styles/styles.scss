@@ -25,13 +25,13 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100dvh;
 
   .text {
     font-size: $font-size;
     text-align: center;
     font-family: $font-family;
-    width: 80vw;
+    width: 86vw;
 
     &>a {
       &:hover {
