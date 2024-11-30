@@ -46,17 +46,13 @@ async function runner() {
     retry();
   }
   
-  document.querySelector('#shareButton')?.addEventListener('click', async () => {
-    const shareData = {
-      url: `There are currently ${clientCount} clients in teamspeak.`,
-    };
-    if (navigator.canShare(shareData)) {
-      await navigator.share(shareData);
-    }
-  });
-  
   document.querySelector('#refreshButton')?.addEventListener('click', async () => {
     await updateClientCount();
+  });
+  
+  document.querySelector('#copyButton')?.addEventListener('click', async () => {
+    const clipboardText = `There are currently ${clientCount} clients in teamspeak.`;
+    navigator.clipboard.writeText(clipboardText);
   });
   
   const typers = [
