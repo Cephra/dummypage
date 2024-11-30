@@ -55,6 +55,10 @@ async function runner() {
     }
   });
   
+  document.querySelector('#refreshButton')?.addEventListener('click', async () => {
+    await updateClientCount();
+  });
+  
   const typers = [
     createTyper(document.querySelector(".subcontainer > p")),
     createTyper(document.querySelector(".hint")),
