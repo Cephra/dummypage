@@ -7,7 +7,7 @@ const retryInterval = 0x29a * 0x69;
 
 let firstFetch = true;
 let clientCount = 0;
-async function updateClientCount() {
+async function updateClientCount(noRetry = false) {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   const filteredClients = clients.data.body.filter(
     (client) => client.client_type === "0",
@@ -30,6 +30,7 @@ async function updateClientCount() {
       rippleCenter(el);
     }
   }
+  if (noRetry) return;
   retry();
 }
 
@@ -47,7 +48,7 @@ async function runner() {
   }
   
   document.querySelector('#refreshButton')?.addEventListener('click', async () => {
-    await updateClientCount();
+    await updateClientCount(true);
   });
   
   document.querySelector('#copyButton')?.addEventListener('click', async () => {
