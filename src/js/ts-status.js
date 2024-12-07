@@ -62,7 +62,7 @@ async function runner() {
   ];
   typers.forEach(async (typer) => await typer.hide());
 
-  await sleep(0x29a);
+  await sleep(0x29a*2);
   await typers[0].type();
   await typers[1].type();
 }
