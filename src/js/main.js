@@ -1,5 +1,6 @@
 import "./rippler";
 import { createTyper } from "./typer";
+import { sleep } from "./util";
 
 async function main() {
   const typers = Array.from(
@@ -10,10 +11,12 @@ async function main() {
     return typer.type;
   });
   typerTypers.shift()();
-  setTimeout(async () => {
-    for (const typer of typerTypers) {
-      await typer();
-    }
-  }, 0x29a*2);
+  await sleep(0x29a*2);
+  for (const typer of typerTypers) {
+    await typer();
+  }
+  //TODO implement random sentence generation for the last typer
+  //const lastTyper = typers.at(-1);
+  //await lastTyper.untype();
 }
 document.addEventListener("DOMContentLoaded", main);
