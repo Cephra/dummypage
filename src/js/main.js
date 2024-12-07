@@ -15,5 +15,6 @@ async function main() {
     await typer();
   }
   await sleep(0x29a);
+  typers.forEach(async (typer) => await typer.untype());
 }
 document.addEventListener("DOMContentLoaded", main);
