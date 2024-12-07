@@ -1,5 +1,6 @@
 import { rippleCenter } from "./rippler";
 import { createTyper } from "./typer";
+import { sleep } from "./util";
 
 import axios from "axios";
 
@@ -35,9 +36,8 @@ async function updateClientCount(noRetry = false) {
 }
 
 async function retry() {
-  setTimeout(() => {
-    requestAnimationFrame(updateClientCount);
-  }, retryInterval);
+  await sleep(retryInterval);
+  requestAnimationFrame(updateClientCount);
 }
 
 async function runner() {
@@ -61,9 +61,9 @@ async function runner() {
     createTyper(document.querySelector(".hint")),
   ];
   typers.forEach(async (typer) => await typer.hide());
-  setTimeout(async () => {
-    await typers[0].type();
-    await typers[1].type();
-  }, 0x29a*2);
+
+  await sleep(0x29a);
+  await typers[0].type();
+  await typers[1].type();
 }
 runner();
