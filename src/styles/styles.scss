@@ -34,16 +34,6 @@ a {
     width: 86vw;
 
     &>a {
-      &:hover {
-        transform: scale(1.2);
-        color: color.scale($text-color, $lightness: $lighten-by);
-      }
-
-      &:active {
-        transform: scale(1.3);
-        color: color.scale($text-color, $lightness: $lighten-by*2);
-      }
-
       opacity: 0;
       transition: transform $anim-time, color $anim-time;
       display: inline-block;
@@ -51,6 +41,16 @@ a {
       animation-delay: $anim-time*4;
       margin-left: 8px;
       margin-right: 8px;
+
+      &:hover {
+        transform: scale(1.0333);
+        color: color.scale($text-color, $lightness: $lighten-by);
+      }
+
+      &:active {
+        transform: scale(1.0666);
+        color: color.scale($text-color, $lightness: $lighten-by*3);
+      }
     }
     
     .subcontainer {
