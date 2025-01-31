@@ -68,8 +68,14 @@ async function runner() {
     playerListUl.replaceChildren(
       ...filteredClients.map((client) => {
         const clientElem = document.createElement("li");
+        const clientIcon = document.createElement("i");
+        clientIcon.classList.add(
+          'fa-solid',
+          'fa-person'
+        );
 
         clientElem.textContent = client.client_nickname;
+        clientElem.prepend(clientIcon);
 
         return clientElem;
       }),

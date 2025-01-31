@@ -162,4 +162,10 @@ a {
 .player-list {
   list-style: none;
   padding: 0;
+  
+  li {
+    i {
+      margin-right: $margin-bottom;
+    }
+  }
 }
