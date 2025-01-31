@@ -128,8 +128,6 @@ a {
   }
 
   &-backdrop.active & {
-    width: 90%;
-    max-height: 80%;
     animation: modalglow $anim-time forwards;
   }
   
