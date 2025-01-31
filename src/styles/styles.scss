@@ -166,6 +166,8 @@ a {
   li {
     i {
       margin-right: $margin-bottom;
+      min-width: 16px;
+      text-align: center;
     }
   }
 }

@@ -47,32 +47,43 @@ async function runner() {
   } catch (err) {
     retry();
   }
-  
-  document.querySelector('#refreshButton')?.addEventListener('click', async () => {
-    await updateClientCount(true);
-  });
-  
-  document.querySelector('#copyButton')?.addEventListener('click', async () => {
+
+  document
+    .querySelector("#refreshButton")
+    ?.addEventListener("click", async () => {
+      await updateClientCount(true);
+    });
+
+  document.querySelector("#copyButton")?.addEventListener("click", async () => {
     const clipboardText = `There are currently ${clientCount} clients in teamspeak.`;
     navigator.clipboard.writeText(clipboardText);
   });
-  
-  const listButton = document.querySelector('#listButton');
-  const modalClose = document.querySelector('#modalClose');
-  const modalBackdrop = document.querySelector('#modalBackdrop');
-  const modal = document.querySelector('#modalBackdrop .modal');
-  const playerListUl = document.querySelector('#modalBackdrop .modal-body > ul');
-  listButton?.addEventListener('click', async (e) => {
+
+  const listButton = document.querySelector("#listButton");
+  const modalClose = document.querySelector("#modalClose");
+  const modalBackdrop = document.querySelector("#modalBackdrop");
+  const modal = document.querySelector("#modalBackdrop .modal");
+  const playerListUl = document.querySelector(
+    "#modalBackdrop .modal-body > ul",
+  );
+  listButton?.addEventListener("click", async (e) => {
     e.stopPropagation();
-    
+
     playerListUl.replaceChildren(
       ...filteredClients.map((client) => {
         const clientElem = document.createElement("li");
         const clientIcon = document.createElement("i");
-        clientIcon.classList.add(
-          'fa-solid',
-          'fa-person'
-        );
+        switch (client.cid) {
+          case "14":
+            clientIcon.classList.add("fa-solid", "fa-moon");
+            break;
+          case "28":
+            clientIcon.classList.add("fa-solid", "fa-baby");
+            break;
+          default:
+            clientIcon.classList.add("fa-solid", "fa-person");
+            break;
+        }
 
         clientElem.textContent = client.client_nickname;
         clientElem.prepend(clientIcon);
@@ -80,29 +91,29 @@ async function runner() {
         return clientElem;
       }),
     );
-    
-    modalBackdrop.classList.toggle('active',
-      !modalBackdrop.classList.contains('active')
+
+    modalBackdrop.classList.toggle(
+      "active",
+      !modalBackdrop.classList.contains("active"),
     );
   });
-  modal.addEventListener('click', async (e) => {
+  modal.addEventListener("click", async (e) => {
     e.stopPropagation();
   });
-  document.addEventListener('click', async (e) => {
-    modal.contains(e.target) || modalBackdrop.classList.remove('active');
+  document.addEventListener("click", async (e) => {
+    modal.contains(e.target) || modalBackdrop.classList.remove("active");
   });
-  modalClose.addEventListener('click', async () => {
-    modalBackdrop.classList.remove('active');
+  modalClose.addEventListener("click", async () => {
+    modalBackdrop.classList.remove("active");
   });
-  
-  
+
   const typers = [
     createTyper(document.querySelector(".subcontainer > p")),
     createTyper(document.querySelector(".hint")),
   ];
   typers.forEach(async (typer) => await typer.hide());
 
-  await sleep(0x29a*2);
+  await sleep(0x29a * 2);
   await typers[0].type();
   await typers[1].type();
 }
