@@ -6,6 +6,7 @@
 @import "./fonts.scss";
 
 body {
+  font-family: $font-family;
   background: $background-color;
   color: $text-color;
   overflow: hidden;
@@ -30,7 +31,6 @@ a {
   .text {
     font-size: $font-size;
     text-align: center;
-    font-family: $font-family;
     width: 86vw;
 
     &>a {
@@ -65,7 +65,7 @@ a {
       opacity: 0;
       width: 0;
       max-height: 0;
-      border-radius: 15px;
+      border-radius: $border-radius;
       border: 3px solid $text-color;
       animation: lineglow $anim-time forwards;
       animation-delay: $anim-time;
