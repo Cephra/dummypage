@@ -46,6 +46,29 @@
   }
 }
 
+@keyframes modalglow {
+  0% {
+    opacity: 0;
+    width: 0;
+    max-height: 0;
+    padding: 0;
+  }
+
+  33% {
+    opacity: 1;
+    width: 90%;
+    max-height: 0;
+    padding: 0;
+  }
+
+  100% {
+    opacity: 1;
+    width: 90%;
+    max-height: 80%;
+    padding: $border-radius;
+  }
+}
+
 @keyframes ripple {
   0% {
     transform: scale(0);
