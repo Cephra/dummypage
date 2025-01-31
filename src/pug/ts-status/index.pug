@@ -21,3 +21,13 @@ block append text
     i.fa-solid.fa-refresh
   a.btn(href="#" id="copyButton")
     i.fa-regular.fa-copy
+  a.btn(href="#" id="listButton")
+    i.fa-solid.fa-list
+    
+block append content 
+  #modalBackdrop.modal-backdrop
+    .modal
+      .modal-header
+        h2 clientlist
+      .modal-body
+        ul.player-list
