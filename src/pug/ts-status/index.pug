@@ -17,11 +17,11 @@ block append subcontainer
 block append text
   a.btn(href="ts3server://0x29a.me:25565")
     i.fa-solid.fa-microphone
-  a.btn(href="#" id="refreshButton")
+  a#refreshButton.btn(href="#")
     i.fa-solid.fa-refresh
-  a.btn(href="#" id="copyButton")
+  a#copyButton.btn(href="#")
     i.fa-regular.fa-copy
-  a.btn(href="#" id="listButton")
+  a#listButton.btn(href="#")
     i.fa-solid.fa-list
     
 block append content 
@@ -29,5 +29,7 @@ block append content
     .modal
       .modal-header
         h2 clientlist
+        a#modalClose(href="#")
+          i.fa-solid.fa-xmark.modal-close
       .modal-body
         ul.player-list

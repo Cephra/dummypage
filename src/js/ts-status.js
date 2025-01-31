@@ -58,6 +58,7 @@ async function runner() {
   });
   
   const listButton = document.querySelector('#listButton');
+  const modalClose = document.querySelector('#modalClose');
   const modalBackdrop = document.querySelector('#modalBackdrop');
   const modal = document.querySelector('#modalBackdrop .modal');
   const playerListUl = document.querySelector('#modalBackdrop .modal-body > ul');
@@ -83,6 +84,9 @@ async function runner() {
   });
   document.addEventListener('click', async (e) => {
     modal.contains(e.target) || modalBackdrop.classList.remove('active');
+  });
+  modalClose.addEventListener('click', async () => {
+    modalBackdrop.classList.remove('active');
   });
   
   

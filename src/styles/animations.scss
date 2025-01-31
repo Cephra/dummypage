@@ -56,16 +56,16 @@
 
   33% {
     opacity: 1;
-    width: 90%;
+    width: 80%;
     max-height: 0;
     padding: 0;
   }
 
   100% {
     opacity: 1;
-    width: 90%;
+    width: 80%;
     max-height: 80%;
-    padding: $border-radius;
+    padding: $border-radius $border-radius*2;
   }
 }
 
