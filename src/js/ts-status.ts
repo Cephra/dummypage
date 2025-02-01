@@ -7,7 +7,7 @@ import axios from "axios";
 const retryInterval = 0x29a * 0x69;
 
 let firstFetch = true;
-let clientCount = 0;
+let clientCount = "0";
 let filteredClients = [];
 async function updateClientCount(noRetry = false) {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
@@ -19,7 +19,7 @@ async function updateClientCount(noRetry = false) {
 
   if (el.textContent !== clientCount) {
     el.innerHTML = "";
-    clientCount.split().forEach((c) => {
+    clientCount.split("").forEach((c) => {
       const clientNumberSpan = document.createElement("span");
       clientNumberSpan.classList.add("fadetext");
       clientNumberSpan.textContent = c;
@@ -38,7 +38,9 @@ async function updateClientCount(noRetry = false) {
 
 async function retry() {
   await sleep(retryInterval);
-  requestAnimationFrame(updateClientCount);
+  requestAnimationFrame(async () => {
+    await updateClientCount();
+  });
 }
 
 async function runner() {
@@ -101,7 +103,7 @@ async function runner() {
     e.stopPropagation();
   });
   document.addEventListener("click", async (e) => {
-    modal.contains(e.target) || modalBackdrop.classList.remove("active");
+    modal.contains(e.target as Node) || modalBackdrop.classList.remove("active");
   });
   modalClose.addEventListener("click", async () => {
     modalBackdrop.classList.remove("active");

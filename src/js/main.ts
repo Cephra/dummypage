@@ -4,7 +4,7 @@ import { sleep } from "./util";
 
 async function main() {
   const typers = Array.from(
-    document.querySelectorAll(".textcontainer > *, .subcontainer > *"),
+    document.querySelectorAll<HTMLElement>(".textcontainer > *, .subcontainer > *"),
   ).map((el) => createTyper(el));
   typers.forEach(async (typer) => await typer.hide());
   const typerTypers = typers.map((typer) => {
