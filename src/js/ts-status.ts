@@ -9,11 +9,39 @@ const retryInterval = 0x29a * 0x69;
 let firstFetch = true;
 let clientCount = "0";
 let filteredClients = [];
+const playerListUl = document.querySelector("#modalBackdrop .modal-body > ul");
+
+async function updatePlayerList() {
+  playerListUl.replaceChildren(
+    ...filteredClients.map((client) => {
+      const clientElem = document.createElement("li");
+      const clientIcon = document.createElement("i");
+      switch (client.cid) {
+        case "14":
+          clientIcon.classList.add("fa-solid", "fa-moon");
+          break;
+        case "28":
+          clientIcon.classList.add("fa-solid", "fa-baby");
+          break;
+        default:
+          clientIcon.classList.add("fa-solid", "fa-person");
+          break;
+      }
+
+      clientElem.textContent = client.client_nickname;
+      clientElem.prepend(clientIcon);
+
+      return clientElem;
+    }),
+  );
+}
+
 async function updateClientCount(noRetry = false) {
   let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
   filteredClients = clients.data.body.filter(
     (client) => client.client_type === "0",
   );
+  await updatePlayerList();
   const el = document.querySelector(".textcontainer > h1");
   clientCount = filteredClients.length.toString();
 
@@ -65,34 +93,8 @@ async function runner() {
   const modalClose = document.querySelector("#modalClose");
   const modalBackdrop = document.querySelector("#modalBackdrop");
   const modal = document.querySelector("#modalBackdrop .modal");
-  const playerListUl = document.querySelector(
-    "#modalBackdrop .modal-body > ul",
-  );
   listButton?.addEventListener("click", async (e) => {
     e.stopPropagation();
-
-    playerListUl.replaceChildren(
-      ...filteredClients.map((client) => {
-        const clientElem = document.createElement("li");
-        const clientIcon = document.createElement("i");
-        switch (client.cid) {
-          case "14":
-            clientIcon.classList.add("fa-solid", "fa-moon");
-            break;
-          case "28":
-            clientIcon.classList.add("fa-solid", "fa-baby");
-            break;
-          default:
-            clientIcon.classList.add("fa-solid", "fa-person");
-            break;
-        }
-
-        clientElem.textContent = client.client_nickname;
-        clientElem.prepend(clientIcon);
-
-        return clientElem;
-      }),
-    );
 
     modalBackdrop.classList.toggle(
       "active",
@@ -103,7 +105,8 @@ async function runner() {
     e.stopPropagation();
   });
   document.addEventListener("click", async (e) => {
-    modal.contains(e.target as Node) || modalBackdrop.classList.remove("active");
+    modal.contains(e.target as Node) ||
+      modalBackdrop.classList.remove("active");
   });
   modalClose.addEventListener("click", async () => {
     modalBackdrop.classList.remove("active");
