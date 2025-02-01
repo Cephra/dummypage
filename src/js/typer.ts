@@ -5,7 +5,7 @@ import { sleep } from "./util";
 
 export const createTyper = (letterContainer: HTMLElement) => {
   const text = letterContainer.textContent?.trim() ?? "";
-  const splittedText = text.split("");
+  let splittedText = text.split("");
   const timeout = 0x29a / splittedText.length;
 
   const typer = {
@@ -14,6 +14,15 @@ export const createTyper = (letterContainer: HTMLElement) => {
       // behaviour should depend on whether it's hidden or not. 
       // if it's hidden, should be just updated with the new text like it is done in hide method
       // if it isn't hidden, should be untyped, then updated, and typed also
+      if ("true" === letterContainer.dataset.hidden) {
+        splittedText = newText.split("");
+        await typer.hide();
+      } else {
+        await typer.untype();
+        splittedText = newText.split("");
+        await typer.hide();
+        await typer.type();
+      }
     },
     async hide() {
       const letterElems = splittedText.map(() => {
@@ -50,6 +59,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
         await sleep(timeout);
       }
       prevElem.textContent = splittedText.at(-1);
+      letterContainer.dataset.hidden = "false";
     },
     async untype() {
       const letterElems = Array.from(letterContainer.querySelectorAll("span"));
@@ -69,6 +79,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
       }
 
       prevElem.textContent = NBSP;
+      letterContainer.dataset.hidden = "true";
     },
   };
 

@@ -20,7 +20,7 @@ async function main() {
     await typer();
   }
   //TODO implement random sentence generation for the last typer
-  //const lastTyper = typers.at(-1);
-  //await lastTyper.untype();
+  const lastTyper = typers.at(-1);
+  await lastTyper.changeText("some change.");
 }
 document.addEventListener("DOMContentLoaded", main);
