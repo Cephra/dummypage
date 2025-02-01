@@ -2,6 +2,10 @@ import "./rippler";
 import { createTyper } from "./typer";
 import { sleep } from "./util";
 
+const texts = [
+  ""
+]
+
 async function main() {
   const typers = Array.from(
     document.querySelectorAll<HTMLElement>(".textcontainer > *, .subcontainer > *"),

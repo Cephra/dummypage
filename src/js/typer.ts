@@ -9,6 +9,12 @@ export const createTyper = (letterContainer: HTMLElement) => {
   const timeout = 0x29a / splittedText.length;
 
   const typer = {
+    async changeText(newText: string) {
+      // TODO update the text
+      // behaviour should depend on whether it's hidden or not. 
+      // if it's hidden, should be just updated with the new text like it is done in hide method
+      // if it isn't hidden, should be untyped, then updated, and typed also
+    },
     async hide() {
       const letterElems = splittedText.map(() => {
         const letterElem = document.createElement("span");
