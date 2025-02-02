@@ -164,6 +164,8 @@ a {
   padding: 0;
   
   li {
+    margin-bottom: $margin-bottom;
+
     i {
       margin-right: $margin-bottom;
       min-width: 16px;
