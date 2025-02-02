@@ -9,11 +9,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
   const timeout = 0x29a / splittedText.length;
 
   const typer = {
-    async changeText(newText: string) {
-      // TODO update the text
-      // behaviour should depend on whether it's hidden or not. 
-      // if it's hidden, should be just updated with the new text like it is done in hide method
-      // if it isn't hidden, should be untyped, then updated, and typed also
+    async changeText(newText: string, wait: number = 0) {
       if ("true" === letterContainer.dataset.hidden) {
         splittedText = newText.split("");
         await typer.hide();
@@ -21,6 +17,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
         await typer.untype();
         splittedText = newText.split("");
         await typer.hide();
+        await sleep(wait);
         await typer.type();
       }
     },
