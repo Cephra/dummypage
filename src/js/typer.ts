@@ -5,10 +5,22 @@ import { sleep } from "./util";
 
 export const createTyper = (letterContainer: HTMLElement) => {
   const text = letterContainer.textContent?.trim() ?? "";
-  const splittedText = text.split("");
+  let splittedText = text.split("");
   const timeout = 0x29a / splittedText.length;
 
   const typer = {
+    async changeText(newText: string, wait: number = 0) {
+      if ("true" === letterContainer.dataset.hidden) {
+        splittedText = newText.split("");
+        await typer.hide();
+      } else {
+        await typer.untype();
+        splittedText = newText.split("");
+        await typer.hide();
+        await sleep(wait);
+        await typer.type();
+      }
+    },
     async hide() {
       const letterElems = splittedText.map(() => {
         const letterElem = document.createElement("span");
@@ -44,6 +56,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
         await sleep(timeout);
       }
       prevElem.textContent = splittedText.at(-1);
+      letterContainer.dataset.hidden = "false";
     },
     async untype() {
       const letterElems = Array.from(letterContainer.querySelectorAll("span"));
@@ -63,6 +76,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
       }
 
       prevElem.textContent = NBSP;
+      letterContainer.dataset.hidden = "true";
     },
   };
 
