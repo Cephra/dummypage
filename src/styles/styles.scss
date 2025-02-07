@@ -38,7 +38,6 @@ a {
       transition: transform $anim-time, color $anim-time;
       display: inline-block;
       animation: fadeInUnblur $anim-time forwards;
-      animation-delay: $anim-time*4;
       margin-left: 8px;
       margin-right: 8px;
 
@@ -50,6 +49,12 @@ a {
       &:active {
         transform: scale(1.0666);
         color: color.scale($text-color, $lightness: $lighten-by*3);
+      }
+      
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          animation-delay: $anim-time+$i*0.2s;
+        }
       }
     }
     
