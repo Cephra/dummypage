@@ -3,15 +3,39 @@ import { createTyper } from "./typer";
 import { sleep } from "./util";
 
 const texts = [
-  "just a placeholder o_o",
-  "this website is still in beta",
-  "stay tuned for... nothing (:",
-  "why are you even here?",
-  "well... you're here anyway :)",
-  "really just a placeholder",
   "except a cool click effect :D",
-  "much content... so wow...",
+  "awaiting user input",
+  "clicks are silently judged",
+  "not much else going on",
+  "listening on port 80",
+  "compiled with placeholder.js",
+  "stage 0 deployment",
+  "pinging the void",
+  "rendering placeholder protocol",
+  "user presence detected",
+  "logging unnecessary data",
+  "running diagnostics... maybe",
+  "status: comfortably idle",
+  "html running in safe mode",
+  "echoing into the void",
+  "system standing by",
+  "request: denied",
+  "zero errors, zero features",
+  "running on pure vibes",
+  "input ignored (as expected)",
 ];
+
+let lastIndex = 0;
+function getNextText() {
+  let index;
+  do {
+    index = Math.floor(Math.random() * texts.length);
+  } while (index === lastIndex);
+  
+  lastIndex = index;
+  
+  return texts[index];
+}
 
 async function main() {
   const typers = Array.from(
@@ -32,7 +56,7 @@ async function main() {
   const lastTyper = typers.at(-1);
   while (true) {
     await sleep(0x29a * 3);
-    const text = texts[Math.floor(Math.random() * texts.length)];
+    const text = getNextText();
     await lastTyper.changeText(text, 0x29a);
   }
 }
