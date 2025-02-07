@@ -1,3 +1,5 @@
+@use "variables";
+
 .ripple {
   position: fixed;
 
@@ -12,6 +14,6 @@
   pointer-events: none;
 
   opacity: 0.8;
-  filter: blur($blur-amount);
-  animation: ripple $anim-time forwards;
+  filter: blur(variables.$blur-amount);
+  animation: ripple variables.$anim-time forwards;
 }
