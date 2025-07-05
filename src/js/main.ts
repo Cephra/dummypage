@@ -52,7 +52,6 @@ async function main() {
   for (const typer of typerTypers) {
     await typer();
   }
-  //TODO implement random sentence generation for the last typer
   const lastTyper = typers.at(-1);
   while (true) {
     await sleep(0x29a * 3);
