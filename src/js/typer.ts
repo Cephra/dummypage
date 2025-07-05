@@ -4,10 +4,10 @@ import { sleep } from "./util";
 
 export const createTyper = (letterContainer: HTMLElement) => {
   const text = letterContainer.textContent?.trim() ?? "";
-  let splittedText: Array<string>, timeout: number;
+  let splitText: Array<string>, timeout: number;
   function updateSplittedTextAndTimeout(text: string) {
-    splittedText = text.split("");
-    timeout = 0x29a / splittedText.length;
+    splitText = text.split("");
+    timeout = 0x29a / splitText.length;
   }
   updateSplittedTextAndTimeout(text)
   
@@ -25,7 +25,7 @@ export const createTyper = (letterContainer: HTMLElement) => {
       }
     },
     async hide() {
-      const letterElems = splittedText.map((c) => {
+      const letterElems = splitText.map((c) => {
         const letterElem = document.createElement("span");
         letterElem.textContent = c;
 
