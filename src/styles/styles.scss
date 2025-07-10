@@ -31,7 +31,7 @@ a {
   .text {
     font-size: variables.$font-size;
     text-align: center;
-    width: 86vw;
+    max-width: 86vw;
 
     &>a {
       opacity: 0;
@@ -59,25 +59,19 @@ a {
     }
     
     .subcontainer {
-      *:first-child {
-        margin-top: variables.$blur-amount;
-      }
-
-      *:last-child {
-        margin-bottom: variables.$blur-amount;
-      }
-      
-      opacity: 0;
-      width: 0;
-      max-height: 0;
+      animation-delay: variables.$anim-time;
+      animation: lineglow variables.$anim-time forwards;
       border-radius: variables.$border-radius;
       border: 3px solid variables.$text-color;
-      animation: lineglow variables.$anim-time forwards;
-      animation-delay: variables.$anim-time;
-      box-sizing: border-box;
-      transition: max-height variables.$anim-time;
       box-shadow: 0 0 variables.$shadow-amount variables.$text-color;
+      box-sizing: border-box;
       margin-bottom: variables.$margin-bottom;
+      max-height: 0;
+      opacity: 0;
+      padding: 16px;
+      text-align: left;
+      transition: max-height variables.$anim-time;
+      width: 0;
     }
 
     .textcontainer > *, .subcontainer > * {
