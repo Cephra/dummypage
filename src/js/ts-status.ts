@@ -7,57 +7,57 @@ import axios from "axios";
 const retryInterval = 0x29a * 0x69;
 
 let firstFetch = true;
-let clientCount = "0";
-let filteredClients = [];
+let userCount = "0";
+let filteredUsers = [];
 const playerListUl = document.querySelector("#modalBackdrop .modal-body > ul");
 
 async function updatePlayerList() {
-  if (filteredClients.length === 0) {
-    const noClientsLi = document.createElement("li");
-    noClientsLi.textContent = "no clients connected";
-    playerListUl.replaceChildren(noClientsLi);
+  if (filteredUsers.length === 0) {
+    const noUsersLi = document.createElement("li");
+    noUsersLi.textContent = "no users connected";
+    playerListUl.replaceChildren(noUsersLi);
     return;
   }
   playerListUl.replaceChildren(
-    ...filteredClients.map((client) => {
-      const clientElem = document.createElement("li");
-      const clientIcon = document.createElement("i");
-      switch (client.cid) {
+    ...filteredUsers.map((user) => {
+      const userElem = document.createElement("li");
+      const userIcon = document.createElement("i");
+      switch (user.cid) {
         case "14":
-          clientIcon.classList.add("fa-solid", "fa-moon");
+          userIcon.classList.add("fa-solid", "fa-moon");
           break;
         case "28":
-          clientIcon.classList.add("fa-solid", "fa-baby");
+          userIcon.classList.add("fa-solid", "fa-baby");
           break;
         default:
-          clientIcon.classList.add("fa-solid", "fa-person");
+          userIcon.classList.add("fa-solid", "fa-person");
           break;
       }
 
-      clientElem.textContent = client.client_nickname;
-      clientElem.prepend(clientIcon);
+      userElem.textContent = user.user_nickname;
+      userElem.prepend(userIcon);
 
-      return clientElem;
+      return userElem;
     }),
   );
 }
 
-async function updateClientCount(noRetry = false) {
-  let clients = await axios.get("https://ts.0x29a.me/api/clientlist");
-  filteredClients = clients.data.body.filter(
-    (client) => client.client_type === "0",
+async function updateUserCount(noRetry = false) {
+  let users = await axios.get("https://ts.0x29a.me/api/clientlist");
+  filteredUsers = users.data.body.filter(
+    (user) => user.user_type === "0",
   );
   await updatePlayerList();
   const el = document.querySelector(".textcontainer > h1");
-  clientCount = filteredClients.length.toString();
+  userCount = filteredUsers.length.toString();
 
-  if (el.textContent !== clientCount) {
+  if (el.textContent !== userCount) {
     el.innerHTML = "";
-    clientCount.split("").forEach((c) => {
-      const clientNumberSpan = document.createElement("span");
-      clientNumberSpan.classList.add("fadetext");
-      clientNumberSpan.textContent = c;
-      el.appendChild(clientNumberSpan);
+    userCount.split("").forEach((c) => {
+      const userNumberSpan = document.createElement("span");
+      userNumberSpan.classList.add("fadetext");
+      userNumberSpan.textContent = c;
+      el.appendChild(userNumberSpan);
     });
 
     if (firstFetch) {
@@ -73,13 +73,13 @@ async function updateClientCount(noRetry = false) {
 async function retry() {
   await sleep(retryInterval);
   requestAnimationFrame(async () => {
-    await updateClientCount();
+    await updateUserCount();
   });
 }
 
 async function runner() {
   try {
-    updateClientCount();
+    updateUserCount();
   } catch (err) {
     retry();
   }
@@ -87,11 +87,11 @@ async function runner() {
   document
     .querySelector("#refreshButton")
     ?.addEventListener("click", async () => {
-      await updateClientCount(true);
+      await updateUserCount(true);
     });
 
   document.querySelector("#copyButton")?.addEventListener("click", async () => {
-    const clipboardText = `There are currently ${clientCount} clients in teamspeak.`;
+    const clipboardText = `There are currently ${userCount} users in teamspeak.`;
     navigator.clipboard.writeText(clipboardText);
   });
 
