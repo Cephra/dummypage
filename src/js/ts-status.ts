@@ -12,6 +12,12 @@ let filteredClients = [];
 const playerListUl = document.querySelector("#modalBackdrop .modal-body > ul");
 
 async function updatePlayerList() {
+  if (filteredClients.length === 0) {
+    const noClientsLi = document.createElement("li");
+    noClientsLi.textContent = "no clients connected";
+    playerListUl.replaceChildren(noClientsLi);
+    return;
+  }
   playerListUl.replaceChildren(
     ...filteredClients.map((client) => {
       const clientElem = document.createElement("li");
