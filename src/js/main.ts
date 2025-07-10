@@ -25,7 +25,7 @@ const texts = [
   "input ignored as designed",
 ];
 
-let lastIndex = 0;
+let lastIndex = -1;
 function getNextText() {
   let index;
   do {
