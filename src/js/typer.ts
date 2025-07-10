@@ -18,12 +18,15 @@ export const createTyper = (letterContainer: HTMLElement) => {
         updateSplittedTextAndTimeout(newText)
       } else {
         await typer.untype();
+        updateSplittedTextAndTimeout(newText)
         await typer.hide();
         await sleep(wait);
-        updateSplittedTextAndTimeout(newText)
         await typer.type();
       }
     },
+    // TODO this actually doesn't just "hide", 
+    // it recreates the whole text, 
+    // I need to replace this with a real hide function soon(tm)
     async hide() {
       const letterElems = splitText.map((c) => {
         const letterElem = document.createElement("span");
