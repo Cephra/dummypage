@@ -34,7 +34,7 @@ async function updatePlayerList() {
           break;
       }
 
-      userElem.textContent = user.user_nickname;
+      userElem.textContent = user.client_nickname;
       userElem.prepend(userIcon);
 
       return userElem;
@@ -45,7 +45,7 @@ async function updatePlayerList() {
 async function updateUserCount(noRetry = false) {
   let users = await axios.get("https://ts.0x29a.me/api/clientlist");
   filteredUsers = users.data.body.filter(
-    (user) => user.user_type === "0",
+    (user) => user.client_type === "0",
   );
   await updatePlayerList();
   const el = document.querySelector(".textcontainer > h1");
@@ -129,3 +129,12 @@ async function runner() {
   await typers[1].type();
 }
 runner();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker
+      .register(new URL('service-worker.ts', import.meta.url))
+      .then(reg => console.log('ServiceWorker registered:', reg))
+      .catch(err => console.error('ServiceWorker registration failed:', err));
+  });
+}
