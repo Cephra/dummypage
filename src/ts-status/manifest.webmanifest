@@ -1,0 +1,8 @@
+{
+  "name": "0x29a.me TeamSpeak Status",
+  "short_name": "0x29a.me ts status",
+  "start_url": "/ts-status/",
+  "display": "standalone",
+  "background_color": "#060606",
+  "theme_color": "#859900"
+}

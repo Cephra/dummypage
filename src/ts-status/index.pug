@@ -7,8 +7,15 @@ block prepend content
 
 block scripts 
   script(
-      src="/src/js/ts-status.ts"
+      src="ts-status.ts"
       type="module"
+  )
+  link(
+    rel="manifest"
+    href="manifest.webmanifest"
+  )
+  meta(
+    name="theme-color" content="#859900"
   )
 
 block append subcontainer
@@ -33,3 +40,12 @@ block append content
           i.fa-solid.fa-xmark.modal-close
       .modal-body
         ul.player-list
+  script(type="module").
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker
+          .register(new URL('service-worker.js', import.meta.url), { scope: '/ts-status/' })
+          .then(reg => console.log('ServiceWorker registered:', reg))
+          .catch(err => console.error('ServiceWorker registration failed:', err));
+      });
+    }

@@ -1,6 +1,6 @@
-import { rippleCenter } from "./rippler";
-import { createTyper } from "./typer";
-import { sleep } from "./util";
+import { rippleCenter } from "../common/scripts/rippler";
+import { createTyper } from "../common/scripts/typer";
+import { sleep } from "../common/scripts/util";
 
 import axios from "axios";
 
@@ -111,8 +111,8 @@ async function runner() {
     e.stopPropagation();
   });
   document.addEventListener("click", async (e) => {
-    modal.contains(e.target as Node) ||
-      modalBackdrop.classList.remove("active");
+    if (modal.contains(e.target as Node)) return;
+    modalBackdrop.classList.remove("active");
   });
   modalClose.addEventListener("click", async () => {
     modalBackdrop.classList.remove("active");
