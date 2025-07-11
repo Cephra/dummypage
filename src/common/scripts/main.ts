@@ -48,13 +48,13 @@ async function main() {
     return typer.type;
   });
   typerTypers.shift()();
-  await sleep(0x29a * 2);
+  await sleep(0x29a);
   for (const typer of typerTypers) {
     await typer();
   }
   const lastTyper = typers.at(-1);
   while (true) {
-    await sleep(0x29a * 3);
+    await sleep(0x29a * 2);
     const text = getNextText();
     await lastTyper.changeText(text, 0x29a);
   }
