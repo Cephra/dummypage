@@ -2,8 +2,6 @@ import { rippleCenter } from "../common/scripts/rippler";
 import { createTyper } from "../common/scripts/typer";
 import { sleep } from "../common/scripts/util";
 
-import axios from "axios";
-
 const retryInterval = 0x29a * 0x69;
 
 let firstFetch = true;
@@ -43,8 +41,9 @@ async function updatePlayerList() {
 }
 
 async function updateUserCount(noRetry = false) {
-  let users = await axios.get("https://ts.0x29a.me/api/clientlist");
-  filteredUsers = users.data.body.filter((user) => user.client_type === "0");
+  let users = await fetch("https://ts.0x29a.me/api/clientlist");
+  let usersJson = await users.json();
+  filteredUsers = usersJson.body.filter((user) => user.client_type === "0");
   await updatePlayerList();
   const el = document.querySelector(".textcontainer > h1");
   userCount = filteredUsers.length.toString();
