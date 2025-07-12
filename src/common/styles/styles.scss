@@ -18,11 +18,6 @@ body {
   }
 }
 
-a {
-  color: variables.$text-color;
-  text-decoration: none;
-}
-
 .btn {
   @include mixins.btn-base;
   @include mixins.btn-state-styles;
@@ -120,9 +115,17 @@ a {
   box-shadow: 0 0 variables.$shadow-amount variables.$text-color;
   
   &-close {
+    color: variables.$text-color;
+    text-decoration: none;
     font-size: 24px;
     text-align: center;
     padding: 5px;
+    transition: color variables.$anim-time;
+
+    &:hover {
+        color: color.scale(variables.$text-color,
+                $lightness: variables.$lighten-by);
+    }
   }
 
   &-backdrop.active & {
