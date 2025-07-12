@@ -3,7 +3,7 @@
 .ripple {
   position: fixed;
 
-  background-color: #859900;
+  background-color: variables.$text-color;
 
   $square: 100vw*2;
   width: $square;
