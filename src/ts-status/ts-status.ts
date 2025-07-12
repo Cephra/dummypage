@@ -44,9 +44,7 @@ async function updatePlayerList() {
 
 async function updateUserCount(noRetry = false) {
   let users = await axios.get("https://ts.0x29a.me/api/clientlist");
-  filteredUsers = users.data.body.filter(
-    (user) => user.client_type === "0",
-  );
+  filteredUsers = users.data.body.filter((user) => user.client_type === "0");
   await updatePlayerList();
   const el = document.querySelector(".textcontainer > h1");
   userCount = filteredUsers.length.toString();
@@ -78,11 +76,9 @@ async function retry() {
 }
 
 function setupConnectButton() {
-  document
-    .querySelector("#connectButton")
-    ?.addEventListener("click", () => {
-      window.location.replace('ts3server://0x29a.me:4711')
-    });
+  document.querySelector("#connectButton")?.addEventListener("click", () => {
+    window.location.replace("ts3server://0x29a.me:4711");
+  });
 }
 
 function setupRefreshButton() {
@@ -105,25 +101,50 @@ function setupListButton() {
   const modalClose = document.querySelector("#modalClose");
   const modalBackdrop = document.querySelector("#modalBackdrop");
   const modal = document.querySelector("#modalBackdrop .modal");
-  listButton?.addEventListener("click", async (e) => {
+
+  function openModal() {
+    modalBackdrop.classList.add("active");
+    history.pushState({ modalOpen: true }, "", window.location.href);
+  }
+
+  function closeModal(fromPopState = false) {
+    modalBackdrop.classList.remove("active");
+
+    if (!fromPopState && history.state?.modalOpen) {
+      history.back();
+    }
+  }
+
+  window.addEventListener("popstate", (e) => {
+    if (modalBackdrop.classList.contains("active")) {
+      closeModal(true);
+    }
+  });
+
+  listButton.addEventListener("click", (e) => {
     e.stopPropagation();
 
-    modalBackdrop.classList.toggle(
-      "active",
-      !modalBackdrop.classList.contains("active"),
-    );
-  });
-  modal.addEventListener("click", async (e) => {
-    e.stopPropagation();
-  });
-  document.addEventListener("click", async (e) => {
-    if (modal.contains(e.target as Node)) return;
-    modalBackdrop.classList.remove("active");
-  });
-  modalClose.addEventListener("click", async () => {
-    modalBackdrop.classList.remove("active");
+    if (modalBackdrop.classList.contains("active")) {
+      closeModal();
+    } else {
+      openModal();
+    }
   });
 
+  modal.addEventListener("click", (e) => e.stopPropagation());
+
+  document.addEventListener("click", (e) => {
+    if (
+      !modal.contains(e.target as Node) &&
+      modalBackdrop.classList.contains("active")
+    ) {
+      closeModal();
+    }
+  });
+
+  modalClose.addEventListener("click", () => {
+    closeModal();
+  });
 }
 
 async function runner() {
@@ -132,7 +153,7 @@ async function runner() {
   } catch (err) {
     retry();
   }
-  
+
   setupConnectButton();
   setupRefreshButton();
   setupCopyButton();
@@ -150,11 +171,11 @@ async function runner() {
 }
 runner();
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
     navigator.serviceWorker
-      .register(new URL('service-worker.ts', import.meta.url))
-      .then(reg => console.log('ServiceWorker registered:', reg))
-      .catch(err => console.error('ServiceWorker registration failed:', err));
+      .register(new URL("service-worker.ts", import.meta.url))
+      .then((reg) => console.log("ServiceWorker registered:", reg))
+      .catch((err) => console.error("ServiceWorker registration failed:", err));
   });
 }
