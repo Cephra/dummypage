@@ -31,7 +31,8 @@ a {
   .text {
     font-size: variables.$font-size;
     text-align: center;
-    max-width: 86vw;
+    max-width: 90vw;
+    min-width: 80vw;
 
     &>a {
       opacity: 0;
@@ -100,27 +101,28 @@ a {
     }
 
     .hint {
-      font-size: calc(variables.$font-size * 0.357);
+      font-size: calc(variables.$font-size * 0.40);
     }
 
     @media screen and (min-width: 576px) {
-      font-size: calc(variables.$font-size * 1.5);
+      font-size: calc(variables.$font-size * 1.6);
     }
 
     @media screen and (min-width: 768px) {
-      font-size: calc(variables.$font-size * 2);
+      font-size: calc(variables.$font-size * 2.4);
     }
 
     @media screen and (min-width: 992px) {
-      font-size: calc(variables.$font-size * 3);
+      font-size: calc(variables.$font-size * 2.75);
     }
 
     @media screen and (min-width: 1200px) {
-      font-size: calc(variables.$font-size * 4);
+      font-size: calc(variables.$font-size * 3.3);
     }
 
-    @media screen and (min-width: 1500px) {
-      font-size: calc(variables.$font-size * 4.5);
+    @media screen and (min-width: 1400px) {
+      font-size: calc(variables.$font-size * 3.57);
+      min-width: 1200px;
     }
   }
 }
