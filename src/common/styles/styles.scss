@@ -4,6 +4,7 @@
 @use "animations.scss";
 @use "ripple.scss";
 @use "fonts.scss";
+@use "mixins.scss";
 
 body {
   font-family: variables.$font-family;
@@ -22,6 +23,11 @@ a {
   text-decoration: none;
 }
 
+.btn {
+  @include mixins.btn-base;
+  @include mixins.btn-state-styles;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -34,31 +40,6 @@ a {
     max-width: 90vw;
     min-width: 80vw;
 
-    &>a {
-      opacity: 0;
-      transition: transform variables.$anim-time, color variables.$anim-time;
-      display: inline-block;
-      animation: fadeInUnblur variables.$anim-time forwards;
-      margin-left: 8px;
-      margin-right: 8px;
-
-      &:hover {
-        transform: scale(1.0333);
-        color: color.scale(variables.$text-color, $lightness: variables.$lighten-by);
-      }
-
-      &:active {
-        transform: scale(1.0666);
-        color: color.scale(variables.$text-color, $lightness: variables.$lighten-by*3);
-      }
-      
-      @for $i from 1 through 10 {
-        &:nth-child(#{$i}) {
-          animation-delay: $i * 0.1s + variables.$anim-time;
-        }
-      }
-    }
-    
     .subcontainer {
       animation: lineglow variables.$anim-time forwards;
       animation-delay: variables.$anim-time;

@@ -1,0 +1,38 @@
+@use "sass:color";
+
+@use "variables.scss";
+
+@mixin btn-base {
+    all: unset; // nuke UA defaults
+    display: inline-block;
+    margin: 0 8px;
+    cursor: pointer;
+    color: variables.$text-color;
+    text-decoration: none;
+
+    opacity: 0;
+    animation: fadeInUnblur variables.$anim-time forwards;
+    transition: transform variables.$anim-time,
+        color variables.$anim-time;
+}
+
+// your hover/active & staggered‐delay logic
+@mixin btn-state-styles {
+    &:hover {
+        transform: scale(1.0333);
+        color: color.scale(variables.$text-color,
+                $lightness: variables.$lighten-by);
+    }
+
+    &:active {
+        transform: scale(1.0666);
+        color: color.scale(variables.$text-color,
+                $lightness: variables.$lighten-by*3);
+    }
+
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            animation-delay: $i * 0.1s + variables.$anim-time;
+        }
+    }
+}

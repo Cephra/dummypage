@@ -77,24 +77,30 @@ async function retry() {
   });
 }
 
-async function runner() {
-  try {
-    updateUserCount();
-  } catch (err) {
-    retry();
-  }
+function setupConnectButton() {
+  document
+    .querySelector("#connectButton")
+    ?.addEventListener("click", () => {
+      window.location.replace('ts3server://0x29a.me:4711')
+    });
+}
 
+function setupRefreshButton() {
   document
     .querySelector("#refreshButton")
     ?.addEventListener("click", async () => {
       await updateUserCount(true);
     });
+}
 
+function setupCopyButton() {
   document.querySelector("#copyButton")?.addEventListener("click", async () => {
     const clipboardText = `There are currently ${userCount} users in teamspeak.`;
     navigator.clipboard.writeText(clipboardText);
   });
+}
 
+function setupListButton() {
   const listButton = document.querySelector("#listButton");
   const modalClose = document.querySelector("#modalClose");
   const modalBackdrop = document.querySelector("#modalBackdrop");
@@ -117,6 +123,20 @@ async function runner() {
   modalClose.addEventListener("click", async () => {
     modalBackdrop.classList.remove("active");
   });
+
+}
+
+async function runner() {
+  try {
+    updateUserCount();
+  } catch (err) {
+    retry();
+  }
+  
+  setupConnectButton();
+  setupRefreshButton();
+  setupCopyButton();
+  setupListButton();
 
   const typers = [
     createTyper(document.querySelector(".subcontainer > p")),
