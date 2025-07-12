@@ -59,8 +59,8 @@ a {
     }
     
     .subcontainer {
-      animation-delay: variables.$anim-time;
       animation: lineglow variables.$anim-time forwards;
+      animation-delay: variables.$anim-time;
       border-radius: variables.$border-radius;
       border: 3px solid variables.$text-color;
       box-shadow: 0 0 variables.$shadow-amount variables.$text-color;

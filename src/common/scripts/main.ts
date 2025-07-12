@@ -48,7 +48,7 @@ async function main() {
     return typer.type;
   });
   typerTypers.shift()();
-  await sleep(0x29a);
+  await sleep(0x29a * 2);
   for (const typer of typerTypers) {
     await typer();
   }
