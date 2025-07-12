@@ -41,9 +41,17 @@
     max-height: 0;
   }
 
+  66% {
+    opacity: 1;
+    width: 100%;
+    padding: 0;
+    max-height: 0;
+  }
+
   100% {
     opacity: 1;
     width: 100%;
+    padding: 16px;
     max-height: 800px;
   }
 }
