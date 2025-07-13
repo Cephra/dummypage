@@ -1,6 +1,6 @@
-import "./rippler";
-import { createTyper } from "./typer";
-import { sleep } from "./util";
+import { globalRippler } from "./common/scripts/rippler";
+import { createTyper } from "./common/scripts/typer";
+import { sleep } from "./common/scripts/util";
 
 async function main() {
   const typers = Array.from(
@@ -18,4 +18,7 @@ async function main() {
     await typer();
   }
 }
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", () => {
+  main();
+  globalRippler();
+});

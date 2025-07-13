@@ -18,4 +18,6 @@ export function rippleCenter(elem) {
   })
 }
 
-document.addEventListener("click", createRippler);
+export function globalRippler() {
+  document.addEventListener("click", createRippler);
+}

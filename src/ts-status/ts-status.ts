@@ -1,4 +1,4 @@
-import { rippleCenter } from "../common/scripts/rippler";
+import { rippleCenter, globalRippler } from "../common/scripts/rippler";
 import { createTyper } from "../common/scripts/typer";
 import { sleep } from "../common/scripts/util";
 
@@ -168,7 +168,10 @@ async function runner() {
   await typers[0].type();
   await typers[1].type();
 }
-runner();
+document.addEventListener("DOMContentLoaded", () => {
+  runner();
+  globalRippler();
+});
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {

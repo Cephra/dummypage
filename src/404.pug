@@ -1,4 +1,4 @@
-extends layout.pug
+extends ./common/templates/layout.pug
 
 block prepend content
     - var title = "404 not found"
@@ -7,7 +7,7 @@ block prepend content
 
 block scripts 
   script(
-      src="/src/common/scripts/404.ts"
+      src="404.ts"
       type="module"
   )
 

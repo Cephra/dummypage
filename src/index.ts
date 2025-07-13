@@ -1,6 +1,6 @@
-import "./rippler";
-import { createTyper } from "./typer";
-import { sleep } from "./util";
+import { globalRippler } from "./common/scripts/rippler";
+import { createTyper } from "./common/scripts/typer";
+import { sleep } from "./common/scripts/util";
 
 const texts = [
   "processing your click...",
@@ -59,4 +59,7 @@ async function main() {
     await lastTyper.changeText(text, 0x29a);
   }
 }
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", () => {
+  main();
+  globalRippler();
+});
