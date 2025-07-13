@@ -7,6 +7,7 @@
     "@parcel/transformer-webmanifest": "^2.15.4",
     "buffer": "^6.0.3",
     "parcel": "^2.15.4",
+    "phaser": "^3.90.0",
     "prettier": "^3.6.2",
     "process": "^0.11.10"
   },
@@ -18,6 +19,7 @@
   "source": [
     "src/index.pug",
     "src/ts-status/index.pug",
+    "src/game/index.pug",
     "src/404.pug"
   ]
 }
