@@ -22,4 +22,13 @@ export const constants = {
   enemyBaseSpeed: 100,
   enemySpeedIncrement: 50,
   pointsPerHit: 10,
+    // …existing…
+  // how often an enemy will start an evasion (in ms)
+  evasionIntervalMin: 800,
+  evasionIntervalMax: 2500,
+  // how long each evasion lasts (in ms)
+  evasionDurationMin: 300,
+  evasionDurationMax: 800,
+  // how fast they dodge laterally (pixels/sec)
+  evasionSpeed: 200,
 };

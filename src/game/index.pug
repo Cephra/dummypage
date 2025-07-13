@@ -1,15 +1,10 @@
 extends ../common/templates/layout.pug
 
-block text
-  .textcontainer#game
-    h1 coming soon
+block content
+  #game
 
 block scripts 
   script(
       src="game.ts"
       type="module"
   )
-
-block append text
-  a.btn(href="/")
-    i.fa-solid.fa-house
