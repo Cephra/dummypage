@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
+import { constants } from '../constants';
 
 export class Projectile extends Phaser.Physics.Arcade.Sprite {
-  private speed: number = 500;
+  private speed = constants.projectileSpeed;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'projectile');
@@ -10,21 +11,19 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(false);
   }
 
-  static generateTexture(scene: Phaser.Scene): void {
-    const gfx = scene.add.graphics();
-    gfx.fillStyle(0xffffff);
-    gfx.fillRect(0, 0, 4, 12);
-    gfx.generateTexture('projectile', 4, 12);
-    gfx.destroy();
-  }
-
-  // Create and return a physics group for projectiles
-  static createPool(scene: Phaser.Scene, maxSize: number = 50): Phaser.Physics.Arcade.Group {
+  static createPool(
+    scene: Phaser.Scene,
+    maxSize = constants.maxProjectiles
+  ): Phaser.Physics.Arcade.Group {
     return scene.physics.add.group({
       classType: Projectile,
       maxSize,
-      runChildUpdate: true
+      runChildUpdate: true,
     });
+  }
+
+  reset(x: number, y: number): void {
+    this.setPosition(x, y);
   }
 
   update(): void {
