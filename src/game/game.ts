@@ -5,13 +5,12 @@ import GameScene from './GameScene';
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'game',
-  backgroundColor: '#000000',
-  // *** NEW SCALE SETTINGS ***
+  backgroundColor: '#060606',
   scale: {
-    mode: Phaser.Scale.RESIZE,             // or Phaser.Scale.ENVELOP
+    mode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: 800,                         // your game’s “virtual” width
-    height: 600,                        // your game’s “virtual” height
+    width: 800,
+    height: 600,
   },
   physics: {
     default: 'arcade',
