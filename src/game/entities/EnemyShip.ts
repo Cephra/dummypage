@@ -3,32 +3,37 @@ import { Ship } from './Ship';
 import { PlayerShip } from './PlayerShip';
 
 export class EnemyShip extends Ship {
-  private target: PlayerShip;
+  private target!: PlayerShip;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, target: PlayerShip, speed: number) {
-    super(
-      scene,
-      x,
-      y,
-      "enemy",
-      speed,
-    );
-    this.target = target;
-    this.setInteractive();
+  constructor(scene: Phaser.Scene, x: number, y: number) {
+    // Initialize with default speed; will be set later
+    super(scene, x, y, 'enemy', 0);
   }
 
-  static generateTexture(scene: Phaser.Scene): void {
-    const gfx = scene.add.graphics();
-    gfx.fillStyle(0xff0000);
-    gfx.fillTriangle(32, 0, 16, 32, 0, 0);
-    gfx.generateTexture("enemy", 32, 32);
-    gfx.destroy();
+  /**
+   * Set the player ship to track
+   */
+  public setTarget(target: PlayerShip): void {
+    this.target = target;
+  }
+
+  /**
+   * Update the movement speed
+   */
+  public setSpeed(speed: number): void {
+    this.speed = speed;
   }
 
   update(): void {
+    // Move downwards at configured speed
     this.setVelocityY(this.speed);
+    // Track horizontally towards the player
     const dx = this.target.x - this.x;
     this.setVelocityX(Math.sign(dx) * this.speed);
-    if (this.y > this.scene.scale.height + this.height) this.destroy();
+
+    // Destroy if past bottom
+    if (this.y > this.scene.scale.height + this.height) {
+      this.destroy();
+    }
   }
 }
