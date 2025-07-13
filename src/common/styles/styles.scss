@@ -18,6 +18,10 @@ body {
   }
 }
 
+canvas {
+  touch-action: none;
+}
+
 .btn {
   @include mixins.btn-base;
   @include mixins.btn-state-styles;
