@@ -12,5 +12,6 @@ export default class BootScene extends Phaser.Scene {
 
   create(): void {
     this.scene.start('GameScene');
+    this.input.addPointer(1);
   }
 }
