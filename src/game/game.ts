@@ -8,7 +8,7 @@ const config: Phaser.Types.Core.GameConfig = {
   backgroundColor: '#000000',
   // *** NEW SCALE SETTINGS ***
   scale: {
-    mode: Phaser.Scale.FIT,             // or Phaser.Scale.ENVELOP
+    mode: Phaser.Scale.RESIZE,             // or Phaser.Scale.ENVELOP
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 800,                         // your game’s “virtual” width
     height: 600,                        // your game’s “virtual” height

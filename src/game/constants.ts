@@ -31,4 +31,5 @@ export const constants = {
   evasionDurationMax: 800,
   // how fast they dodge laterally (pixels/sec)
   evasionSpeed: 200,
+  bottomMargin: 100,
 };

@@ -28,12 +28,10 @@ export default class GameScene extends Phaser.Scene {
 
     // visuals
     this.starfield = new Starfield(this);
-    this.player = new PlayerShip(
-      this,
-      constants.width / 2,
-      constants.height - 100,
-      this.inputType
-    );
+
+    const startX = this.scale.width / 2;
+    const startY = this.scale.height - constants.bottomMargin;
+    this.player = new PlayerShip(this, startX, startY, this.inputType);
 
     // projectile pool
     this.projectiles = Projectile.createPool(this);
@@ -61,6 +59,26 @@ export default class GameScene extends Phaser.Scene {
       undefined,
       this
     );
+    
+    this.scale.on('resize', (gameSize: Phaser.Structs.Size) => {
+      const { width, height } = gameSize;
+
+      // resize starfield
+      this.starfield.setSize(width, height);
+
+      // move score
+      this.scoreSystem.setPosition(10, 10);
+
+      // reposition the player
+      this.player.setPosition(
+        width  / 2,
+        height - constants.bottomMargin
+      );
+
+      // (and camera/world bounds if you’re using them)
+      this.physics.world.setBounds(0, 0, width, height);
+      this.cameras.main.setBounds(0, 0, width, height);
+    });
   }
 
   update(): void {

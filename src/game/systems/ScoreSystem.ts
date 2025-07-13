@@ -35,4 +35,12 @@ export class ScoreSystem {
     this.scene.registry.set('score', this.score);
     this.scoreText.setText(`Score: ${this.score}`);
   }
+
+  public setPosition(x: number, y: number): void {
+    this.scoreText.setPosition(x, y);
+  }
+
+  public get text(): Phaser.GameObjects.Text {
+    return this.scoreText;
+  }
 }
