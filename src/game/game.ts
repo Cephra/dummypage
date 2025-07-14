@@ -23,3 +23,12 @@ const config: Phaser.Types.Core.GameConfig = {
 };
 
 new Phaser.Game(config);
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register(new URL("service-worker.ts", import.meta.url))
+      .then((reg) => console.log("ServiceWorker registered:", reg))
+      .catch((err) => console.error("ServiceWorker registration failed:", err));
+  });
+}
