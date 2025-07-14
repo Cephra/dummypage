@@ -5,7 +5,7 @@ import { Projectile } from './entities/Projectile';
 import { Starfield } from './entities/Starfield';
 import { ScoreSystem } from './systems/ScoreSystem';
 import { EnemySpawner } from './systems/EnemySpawner';
-import { KeyboardInput } from './input/InputController';
+import { KeyboardInput } from './input/KeyboardInput';
 import { TouchInput } from './input/TouchInput';
 
 export default class GameScene extends Phaser.Scene {
