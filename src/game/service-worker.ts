@@ -3,8 +3,8 @@ const SHELL = [
   '/game/index.html',
   '/game/game.js',
   '/game/manifest.webmanifest',
-  '/android-chrome-192x192png',
-  '/android-chrome-512x512png'
+  '/android-chrome-192x192.png',
+  '/android-chrome-512x512.png'
 ];
 
 self.addEventListener("install", (event: ExtendableEvent) => {

@@ -3,8 +3,8 @@ const SHELL = [
   '/ts-status/index.html',
   '/ts-status/ts-status.js',
   '/ts-status/manifest.webmanifest',
-  '/android-chrome-192x192png',
-  '/android-chrome-512x512png'
+  '/android-chrome-192x192.png',
+  '/android-chrome-512x512.png'
 ];
 
 self.addEventListener("install", (event: ExtendableEvent) => {
