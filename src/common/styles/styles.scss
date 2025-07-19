@@ -24,7 +24,15 @@ canvas {
 
 .btn {
   @include mixins.btn-base;
-  @include mixins.btn-state-styles;
+  @include mixins.btn-state-styles-color;
+  
+  &-transform {
+    @include mixins.btn-state-styles-transform;
+  }
+
+  &-anim-staggering {
+    @include mixins.btn-anim-staggering;
+  }
 }
 
 .container {
@@ -119,12 +127,9 @@ canvas {
   box-shadow: 0 0 variables.$shadow-amount variables.$text-color;
   
   &-close {
-    color: variables.$text-color;
-    text-decoration: none;
+    @include mixins.btn-base;
     font-size: 24px;
-    text-align: center;
     padding: 5px;
-    transition: color variables.$anim-time;
 
     &:hover {
         color: color.scale(variables.$text-color,

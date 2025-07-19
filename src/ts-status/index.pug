@@ -19,13 +19,13 @@ block append subcontainer
   p.hint connect via 0x29a.me:4711
   
 block append text
-  button#connectButton.btn(type="button" title="connect")
+  button#connectButton.btn.btn-transform.btn-anim-staggering(type="button" title="connect")
     i.fa-solid.fa-microphone
-  button#refreshButton.btn(type="button" title="refresh")
+  button#refreshButton.btn.btn-transform.btn-anim-staggering(type="button" title="refresh")
     i.fa-solid.fa-refresh
-  button#copyButton.btn(type="button" title="copy")
+  button#copyButton.btn.btn-transform.btn-anim-staggering(type="button" title="copy")
     i.fa-regular.fa-copy
-  button#listButton.btn(type="button" title="userlist")
+  button#listButton.btn.btn-transform.btn-anim-staggering(type="button" title="userlist")
     i.fa-solid.fa-list
     
 block append content 
@@ -33,7 +33,7 @@ block append content
     .modal
       .modal-header
         h2 userlist
-        a#modalClose(href="#")
-          i.fa-solid.fa-xmark.modal-close
+        button.btn.modal-close#modalClose(type="button" title="close modal")
+          i.fa-solid.fa-xmark
       .modal-body
         ul.player-list

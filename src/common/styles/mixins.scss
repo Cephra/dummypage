@@ -16,19 +16,29 @@
         color variables.$anim-time;
 }
 
-@mixin btn-state-styles {
+@mixin btn-state-styles-color {
     &:hover {
-        transform: scale(1.0333);
         color: color.scale(variables.$text-color,
                 $lightness: variables.$lighten-by);
     }
 
     &:active {
-        transform: scale(1.0666);
         color: color.scale(variables.$text-color,
                 $lightness: variables.$lighten-by*3);
     }
+}
 
+@mixin btn-state-styles-transform {
+    &:hover {
+        transform: scale(1.0333);
+    }
+
+    &:active {
+        transform: scale(1.0666);
+    }
+}
+
+@mixin btn-anim-staggering {
     @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
             animation-delay: $i * 0.1s + variables.$anim-time;
