@@ -3,7 +3,7 @@
 @use "variables.scss";
 
 @mixin btn-base {
-    all: unset; // nuke UA defaults
+    all: unset;
     display: inline-block;
     margin: 0 8px;
     cursor: pointer;
@@ -16,7 +16,6 @@
         color variables.$anim-time;
 }
 
-// your hover/active & staggered‐delay logic
 @mixin btn-state-styles {
     &:hover {
         transform: scale(1.0333);
