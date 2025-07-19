@@ -1,26 +1,18 @@
-const CACHE = 'game-v1';
-const SHELL = [
-  '/game/index.html',
-  '/game/game.js',
-  '/game/manifest.webmanifest',
-  '/android-chrome-192x192.png',
-  '/android-chrome-512x512.png'
-];
+import {manifest, version} from '@parcel/service-worker';
 
-self.addEventListener("install", (event: ExtendableEvent) => {
-  event.waitUntil(
-    caches
-      .open(CACHE)
-      .then((cache) => cache.addAll(SHELL))
-      .then(() => {
-        self.skipWaiting();
-      }),
+async function install() {
+  const cache = await caches.open(version);
+  await cache.addAll(manifest);
+}
+addEventListener("install", e => e.waitUntil(install()));
+
+async function activate() {
+  const keys = await caches.keys();
+  await Promise.all(
+    keys.map(key => key !== version && caches.delete(key))
   );
-});
-
-self.addEventListener('activate', (event: ExtendableEvent) => {
-  event.waitUntil(self.clients.claim());
-});
+}
+addEventListener("activate", e => e.waitUntil(activate()));
 
 self.addEventListener('fetch', (event: FetchEvent) => {
   event.respondWith(
