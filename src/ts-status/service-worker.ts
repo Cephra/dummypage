@@ -1,8 +1,8 @@
 const CACHE = 'ts-status-v1';
 const SHELL = [
-  './index.html',
-  './ts-status.js',
-  './manifest.webmanifest',
+  '/ts-status/index.html',
+  '/ts-status/ts-status.js',
+  '/ts-status/manifest.webmanifest',
   '/android-chrome-192x192png',
   '/android-chrome-512x512png'
 ];

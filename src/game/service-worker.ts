@@ -1,8 +1,8 @@
 const CACHE = 'game-v1';
 const SHELL = [
-  './index.html',
-  './game.js',
-  './manifest.webmanifest',
+  '/game/index.html',
+  '/game/game.js',
+  '/game/manifest.webmanifest',
   '/android-chrome-192x192png',
   '/android-chrome-512x512png'
 ];
