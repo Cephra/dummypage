@@ -44,8 +44,7 @@ canvas {
   .text {
     font-size: variables.$font-size;
     text-align: center;
-    max-width: 90vw;
-    min-width: 80vw;
+    width: 90vw;
 
     .subcontainer {
       animation: lineglow variables.$anim-time forwards;
@@ -89,28 +88,36 @@ canvas {
     }
 
     .hint {
-      font-size: calc(variables.$font-size * 0.40);
+      font-size: calc(variables.$font-size * variables.$font-size-hint-factor);
+    }
+    
+    h1 {
+      font-size: calc(variables.$font-size * variables.$font-size-subtitle-factor);
     }
 
-    @media screen and (min-width: 576px) {
-      font-size: calc(variables.$font-size * 1.6);
-    }
+    $breakpoints: (
+      375: 1.0,
+      576: 1.2,
+      768: 1.4,
+      992: 1.6,
+      1200: 1.8,
+      1400: 2.0
+    );
+    
+    @each $bp, $scale in $breakpoints {
+      @media screen and (min-width: #{$bp}px) {
+        font-size: calc(variables.$font-size * #{$scale});
+        width: auto;
+        min-width: calc(variables.$box-min-width * #{$scale} * 0.6);
 
-    @media screen and (min-width: 768px) {
-      font-size: calc(variables.$font-size * 2.4);
-    }
+        .hint {
+          font-size: calc(variables.$font-size * #{$scale} * variables.$font-size-hint-factor);
+        }
 
-    @media screen and (min-width: 992px) {
-      font-size: calc(variables.$font-size * 2.75);
-    }
-
-    @media screen and (min-width: 1200px) {
-      font-size: calc(variables.$font-size * 3.3);
-    }
-
-    @media screen and (min-width: 1400px) {
-      font-size: calc(variables.$font-size * 3.57);
-      min-width: 1200px;
+        h1 {
+          font-size: calc(variables.$font-size * variables.$font-size-subtitle-factor);
+        }
+      }
     }
   }
 }
