@@ -66,15 +66,22 @@
 
   33% {
     opacity: 1;
-    width: 80%;
+    width: 500px;
+    max-height: 0;
+    padding: 0;
+  }
+
+  66% {
+    opacity: 1;
+    width: 500px;
     max-height: 0;
     padding: 0;
   }
 
   100% {
     opacity: 1;
-    width: 80%;
-    max-height: 80%;
+    width: 500px;
+    max-height: 80vh;
     padding: variables.$border-radius variables.$border-radius*2;
   }
 }
