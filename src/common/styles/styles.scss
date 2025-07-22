@@ -123,6 +123,8 @@ canvas {
 }
 
 .modal {
+  display: flex;
+  flex-direction: column;
   background: variables.$background-color;
   border-radius: variables.$border-radius;
   border: 3px solid variables.$text-color;
@@ -168,10 +170,16 @@ canvas {
   }
   
   &-header {
+    flex: 0 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: variables.$margin-bottom;
+  }
+
+  &-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
   }
 }
 
