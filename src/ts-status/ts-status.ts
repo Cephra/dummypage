@@ -27,7 +27,7 @@ async function updatePlayerList() {
         case "28":
           userIcon.classList.add("fa-solid", "fa-baby");
           break;
-        case "44":
+        case "45":
           userIcon.classList.add("fa-solid", "fa-music");
           break;
         default:
