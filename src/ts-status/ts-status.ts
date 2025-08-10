@@ -46,7 +46,14 @@ async function updatePlayerList() {
 async function updateUserCount(noRetry = false) {
   let users = await fetch("https://ts.0x29a.me/api/clientlist");
   let usersJson = await users.json();
-  filteredUsers = usersJson.body.filter((user) => user.client_type === "0");
+  filteredUsers = usersJson.body.filter((user) => {
+    const isNormalClient = user.client_type === "0";
+    const filteredDbIds = [
+      "76", "75"
+    ];
+    return isNormalClient &&
+     !filteredDbIds.includes(user.client_database_id);
+  });
   await updatePlayerList();
   const el = document.querySelector(".textcontainer > h1");
   userCount = filteredUsers.length.toString();
