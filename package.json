@@ -1,7 +1,7 @@
 {
   "name": "dummypage",
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "@parcel/packager-raw-url": "^2.15.4",
     "@parcel/service-worker": "^2.15.4",
     "@parcel/transformer-pug": "^2.15.4",

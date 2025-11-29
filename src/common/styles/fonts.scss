@@ -1,3 +1,7 @@
+@use "/node_modules/@fortawesome/fontawesome-free/scss/variables" with (
+  $font-path: "/node_modules/@fortawesome/fontawesome-free/webfonts"
+);
+
 /* 
 Copyright 2023 The Kode Mono Project Authors (https://github.com/isaozler/kode-mono)
 
@@ -101,6 +105,5 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   font-display: swap;
 }
 
-$fa-font-path: '/node_modules/@fortawesome/fontawesome-free/webfonts';
 @import '/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '/node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
