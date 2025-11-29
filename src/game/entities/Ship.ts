@@ -12,4 +12,6 @@ export abstract class Ship extends Phaser.Physics.Arcade.Sprite {
   }
 
   abstract update(): void;
+  
+  protected preDestroy(): void {};
 }

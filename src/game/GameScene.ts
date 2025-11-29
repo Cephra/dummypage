@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { constants } from './constants';
 import { PlayerShip } from './entities/PlayerShip';
 import { Projectile } from './entities/Projectile';
+import { EnemyProjectile } from './entities/EnemyProjectile';
 import { Starfield } from './entities/Starfield';
 import { ScoreSystem } from './systems/ScoreSystem';
 import { EnemySpawner } from './systems/EnemySpawner';
@@ -12,6 +13,7 @@ export default class GameScene extends Phaser.Scene {
   private inputType!: KeyboardInput | TouchInput;
   private player!: PlayerShip;
   private projectiles!: Phaser.Physics.Arcade.Group;
+  private enemyProjectiles!: Phaser.Physics.Arcade.Group;
   private starfield!: Starfield;
   private scoreSystem!: ScoreSystem;
   private enemySpawner!: EnemySpawner;
@@ -35,15 +37,28 @@ export default class GameScene extends Phaser.Scene {
 
     // projectile pool
     this.projectiles = Projectile.createPool(this);
+    this.enemyProjectiles = EnemyProjectile.createPool(this);
 
     // systems
     this.scoreSystem = new ScoreSystem(this);
-    this.enemySpawner = new EnemySpawner(this, this.player, this.scoreSystem);
+    this.enemySpawner = new EnemySpawner(
+      this,
+      this.player,
+      this.scoreSystem,
+      this.enemyProjectiles
+    );
 
     // collisions
     this.physics.add.overlap(
       this.player,
       this.enemySpawner.getGroup(),
+      () => this.gameOver(),
+      undefined,
+      this
+    );
+    this.physics.add.overlap(
+      this.player,
+      this.enemyProjectiles,
       () => this.gameOver(),
       undefined,
       this

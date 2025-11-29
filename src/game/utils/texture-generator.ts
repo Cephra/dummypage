@@ -20,6 +20,12 @@ export function generateAllTextures(scene: Phaser.Scene): void {
   gfx.fillStyle(constants.projectileColor);
   gfx.fillRect(0, 0, 4, 12);
   gfx.generateTexture('projectile', 4, 12);
+  gfx.clear();
+
+  // enemy projectile
+  gfx.fillStyle(constants.enemyProjectileColor);
+  gfx.fillRect(0, 0, 4, 12);
+  gfx.generateTexture('enemy-projectile', 4, 12);
   gfx.destroy();
 
   // starfield

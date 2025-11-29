@@ -10,15 +10,18 @@ export class EnemySpawner {
   private scoreSystem: ScoreSystem;
   private enemies: Phaser.Physics.Arcade.Group;
   private startTime: number;
+  private enemyProjectiles: Phaser.Physics.Arcade.Group;
 
   constructor(
     scene: Phaser.Scene,
     player: PlayerShip,
-    scoreSystem: ScoreSystem
+    scoreSystem: ScoreSystem,
+    enemyProjectiles: Phaser.Physics.Arcade.Group
   ) {
     this.scene = scene;
     this.player = player;
     this.scoreSystem = scoreSystem;
+    this.enemyProjectiles = enemyProjectiles;
     this.enemies = scene.physics.add.group({
       classType: EnemyShip,
       maxSize: constants.maxEnemies,
@@ -66,6 +69,16 @@ export class EnemySpawner {
       0,
       constants.enemyDiveChanceBase + (tier - 1) * constants.enemyDiveChanceIncrement
     );
+    const fireIntervalMs = tier < constants.enemyFireStartTier
+      ? 0
+      : Phaser.Math.Clamp(
+          constants.enemyFireIntervalBase - tier * constants.enemyFireIntervalDecrement,
+          constants.enemyFireIntervalMin,
+          constants.enemyFireIntervalBase
+        );
+    const aimJitter = tier < constants.enemyFireStartTier
+      ? constants.enemyAimJitter
+      : Math.max(constants.enemyAimJitter * (1 - tier * 0.08), 0.01);
 
     // Obtain an enemy from the pool (or create if none free)
     const enemy = this.enemies.get(x, 0, 'enemy') as EnemyShip;
@@ -85,7 +98,9 @@ export class EnemySpawner {
       trackStrength,
       evasionScale,
       diveChancePerSecond,
-    });
+      fireIntervalMs,
+      aimJitter,
+    }, this.enemyProjectiles);
   }
 
   public getGroup(): Phaser.Physics.Arcade.Group {

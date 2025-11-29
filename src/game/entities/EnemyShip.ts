@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { Ship } from "./Ship";
 import { PlayerShip } from "./PlayerShip";
 import { constants } from "../constants";
+import { EnemyProjectile } from "./EnemyProjectile";
 
 type EnemyBehavior = "basic" | "strafer" | "diver";
 
@@ -13,10 +14,14 @@ type EnemyProfile = {
   trackStrength: number;
   evasionScale: number;
   diveChancePerSecond: number;
+  fireIntervalMs: number;
+  aimJitter: number;
 };
 
 export class EnemyShip extends Ship {
   private target!: PlayerShip;
+  private projectilePool: Phaser.Physics.Arcade.Group | null = null;
+  private fireTimer?: Phaser.Time.TimerEvent;
 
   private profile: EnemyProfile = {
     behavior: "basic",
@@ -26,6 +31,8 @@ export class EnemyShip extends Ship {
     trackStrength: 1,
     evasionScale: 1,
     diveChancePerSecond: 0,
+    fireIntervalMs: constants.enemyFireIntervalBase,
+    aimJitter: constants.enemyAimJitter,
   };
 
   // new evasion state
@@ -46,15 +53,23 @@ export class EnemyShip extends Ship {
     this.target = target;
   }
 
-  public configure(profile: EnemyProfile): void {
+  public configure(
+    profile: EnemyProfile,
+    projectilePool: Phaser.Physics.Arcade.Group
+  ): void {
     this.profile = profile;
     this.speed = profile.speed;
     this.isDiving = false;
     this.isEvading = false;
+    this.projectilePool = projectilePool;
     if (this.evasionTimer) {
       this.evasionTimer.remove(false);
     }
+    if (this.fireTimer) {
+      this.fireTimer.remove(false);
+    }
     this.scheduleNextEvasion();
+    this.scheduleFire();
   }
 
   update(): void {
@@ -172,5 +187,37 @@ export class EnemyShip extends Ship {
       this.isEvading = false;
       this.scheduleNextEvasion();
     });
+  }
+
+  private scheduleFire(): void {
+    if (!this.scene || !this.projectilePool) return;
+    if (this.profile.fireIntervalMs <= 0) return;
+    const delay = Phaser.Math.Between(
+      this.profile.fireIntervalMs * 0.7,
+      this.profile.fireIntervalMs * 1.1
+    );
+    this.fireTimer = this.scene.time.delayedCall(delay, () => {
+      this.fireProjectile();
+      this.scheduleFire();
+    });
+  }
+
+  private fireProjectile(): void {
+    if (!this.active || !this.projectilePool || !this.target) return;
+
+    const bullet = this.projectilePool.get(this.x, this.y + this.height * 0.5, 'enemy-projectile') as EnemyProjectile;
+    if (!bullet) return;
+
+    bullet.setActive(true).setVisible(true);
+    (bullet.body as Phaser.Physics.Arcade.Body).enable = true;
+
+    // fire straight down (mirrors player straight up)
+    bullet.reset(this.x, this.y + this.height * 0.5, 0, constants.enemyProjectileSpeed);
+  }
+
+  preDestroy(): void {
+    if (this.fireTimer) this.fireTimer.remove(false);
+    if (this.evasionTimer) this.evasionTimer.remove(false);
+    super.preDestroy();
   }
 }
