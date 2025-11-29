@@ -14,6 +14,9 @@ export const constants = {
   starScrollSpeed: 0.5,
   maxEnemies: 50,
   scorePerTier: 100,
+  // difficulty progression: every N points or ~60s elapsed
+  difficultyTimeStepMs: 60000,
+  maxDifficultyTier: 6,
   baseInterval: 2000,
   intervalDecrement: 300,
   minInterval: 500,
@@ -21,8 +24,18 @@ export const constants = {
   enemySpawnMaxX: 750,
   enemyBaseSpeed: 100,
   enemySpeedIncrement: 50,
+  enemyTrackStrengthBase: 0.75,
+  enemyTrackStrengthIncrement: 0.05,
+  enemySwayAmplitudeBase: 40,
+  enemySwayAmplitudeIncrement: 8,
+  enemySwayFrequencyBase: 0.002,
+  enemySwayFrequencyIncrement: 0.0004,
+  enemyDiveChanceBase: 0.1, // per second
+  enemyDiveChanceIncrement: 0.05,
+  enemyDiveSpeedMultiplier: 1.6,
+  enemyDiveDurationMin: 400,
+  enemyDiveDurationMax: 900,
   pointsPerHit: 10,
-    // …existing…
   // how often an enemy will start an evasion (in ms)
   evasionIntervalMin: 800,
   evasionIntervalMax: 2500,
