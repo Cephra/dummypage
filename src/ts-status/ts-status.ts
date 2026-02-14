@@ -107,13 +107,16 @@ function setupCopyButton() {
 
 function setupListButton() {
   const listButton = document.querySelector("#listButton");
-  const modalClose = document.querySelector("#modalClose");
+  const modalClose = document.querySelector("#modalClose") as HTMLElement | null;
   const modalBackdrop = document.querySelector("#modalBackdrop");
   const modal = document.querySelector("#modalBackdrop .modal");
+  let previouslyFocused: Element | null = null;
 
   function openModal() {
+    previouslyFocused = document.activeElement as Element;
     modalBackdrop.classList.add("active");
     history.pushState({ modalOpen: true }, "", window.location.href);
+    modalClose?.focus();
   }
 
   function closeModal(fromPopState = false) {
@@ -122,11 +125,20 @@ function setupListButton() {
     if (!fromPopState && history.state?.modalOpen) {
       history.back();
     }
+    if (previouslyFocused instanceof HTMLElement) {
+      previouslyFocused.focus();
+    }
   }
 
   window.addEventListener("popstate", (e) => {
     if (modalBackdrop.classList.contains("active")) {
       closeModal(true);
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modalBackdrop.classList.contains("active")) {
+      e.preventDefault();
+      closeModal();
     }
   });
 

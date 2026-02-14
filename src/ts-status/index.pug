@@ -30,10 +30,10 @@ block append text
     
 block append content 
   #modalBackdrop.modal-backdrop
-    .modal
-      .modal-header
-        h2 userlist
-        button.btn.modal-close#modalClose(type="button" title="close modal")
-          i.fa-solid.fa-xmark
-      .modal-body
-        ul.player-list
+      .modal(role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1")
+        .modal-header
+          h2#modalTitle userlist
+          button.btn.modal-close#modalClose(type="button" title="close modal" aria-label="Close modal")
+            i.fa-solid.fa-xmark
+        .modal-body
+          ul.player-list
