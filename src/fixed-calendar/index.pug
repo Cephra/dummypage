@@ -1,0 +1,21 @@
+extends ../common/templates/layout.pug
+
+block prepend content
+  - var title = "fixed calendar"
+  - var subtitle = "-"
+  - var text = "international fixed calendar"
+
+block scripts
+  script(
+    src="fixed-calendar.ts"
+    type="module"
+  )
+
+block append subcontainer
+  p.hint local timezone
+
+block append text
+  button#refreshButton.btn.btn-transform.btn-anim-staggering(type="button" title="refresh")
+    i.fa-solid.fa-refresh
+  button#copyButton.btn.btn-transform.btn-anim-staggering(type="button" title="copy")
+    i.fa-regular.fa-copy
