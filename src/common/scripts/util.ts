@@ -40,7 +40,9 @@ export function getAnimationFastForwardVersion() {
   return fastForwardVersion;
 }
 
-export function fastForwardPageAnimations() {
+export function fastForwardPageAnimations(
+  excludedAnimations: ReadonlySet<Animation> = new Set(),
+) {
   fastForwardVersion++;
   Array.from(pendingAnimationSleeps).forEach((cancelSleep) => cancelSleep());
   Array.from(fastForwardListeners).forEach((listener) => listener());
@@ -51,6 +53,10 @@ export function fastForwardPageAnimations() {
     [];
 
   animations.forEach((animation) => {
+    if (excludedAnimations.has(animation)) {
+      return;
+    }
+
     try {
       animation.finish();
     } catch {
@@ -61,6 +67,15 @@ export function fastForwardPageAnimations() {
 
 export function setupAnimationFastForwardOnClick() {
   document.addEventListener("click", () => {
-    fastForwardPageAnimations();
-  }, { capture: true });
+    // Let the click finish propagating first. Some handlers create visual
+    // feedback (such as the global ripple), and finishing animations during
+    // capture can interrupt that feedback before it is painted.
+    queueMicrotask(() => {
+      const rippleAnimations = Array.from(document.querySelectorAll(".ripple"))
+        .flatMap((ripple) => ripple.getAnimations());
+      const rippleAnimationSet = new Set(rippleAnimations);
+
+      fastForwardPageAnimations(rippleAnimationSet);
+    });
+  });
 }
