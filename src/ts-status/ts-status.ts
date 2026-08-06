@@ -15,6 +15,9 @@ let firstFetch = true;
 let userCount = "0";
 let filteredUsers = [];
 const playerListUl = document.querySelector("#modalBackdrop .modal-body > ul");
+const filteredDbIds = ["76", "75", "107"];
+const whatsappParticipantsEndpoint =
+  "https://ts.0x29a.me/api/v1/calls/active/participants";
 
 async function updatePlayerList() {
   if (filteredUsers.length === 0) {
@@ -52,16 +55,29 @@ async function updatePlayerList() {
 
 async function updateUserCount(noRetry = false) {
   try {
-    let users = await fetch("https://ts.0x29a.me/api/clientlist");
-    let usersJson = await users.json();
-    filteredUsers = usersJson.body.filter((user) => {
+    const [usersResponse, whatsappParticipantsResponse] = await Promise.all([
+      fetch("https://ts.0x29a.me/api/clientlist"),
+      fetch(whatsappParticipantsEndpoint),
+    ]);
+    const usersJson = await usersResponse.json();
+    const whatsappParticipants = await whatsappParticipantsResponse.json();
+    const whatsappParticipantCount =
+      whatsappParticipants.active &&
+      Number.isInteger(whatsappParticipants.participantCount) &&
+      whatsappParticipants.participantCount > 0
+        ? whatsappParticipants.participantCount
+        : 0;
+
+    const teamspeakUsers = usersJson.body.filter((user) => {
       const isNormalClient = user.client_type === "0";
-      const filteredDbIds = [
-        "76", "75"
-      ];
       return isNormalClient &&
        !filteredDbIds.includes(user.client_database_id);
     });
+    const whatsappUsers = Array.from(
+      { length: whatsappParticipantCount },
+      () => ({ client_nickname: "WhatsApp participant" }),
+    );
+    filteredUsers = [...teamspeakUsers, ...whatsappUsers];
     await updatePlayerList();
     const el = document.querySelector(".textcontainer > h1");
     userCount = filteredUsers.length.toString();
@@ -139,7 +155,7 @@ function setupRefreshButton() {
 
 function setupCopyButton() {
   document.querySelector("#copyButton")?.addEventListener("click", async () => {
-    const clipboardText = `There are currently ${userCount} users in teamspeak.`;
+    const clipboardText = `There are currently ${userCount} users online.`;
     navigator.clipboard.writeText(clipboardText);
   });
 }
