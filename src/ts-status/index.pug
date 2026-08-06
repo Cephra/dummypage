@@ -19,13 +19,13 @@ block append subcontainer
   p.hint connect via 0x29a.me:4711
   
 block append text
-  button#connectButton.btn.btn-transform.btn-anim-staggering(type="button" title="connect")
+  button#connectButton.btn.btn-transform.btn-anim-staggering(type="button" title="connect" tabindex="0")
     i.fa-solid.fa-microphone
-  button#refreshButton.btn.btn-transform.btn-anim-staggering(type="button" title="refresh")
+  button#refreshButton.btn.btn-transform.btn-anim-staggering(type="button" title="refresh" tabindex="0")
     i.fa-solid.fa-refresh
-  button#copyButton.btn.btn-transform.btn-anim-staggering(type="button" title="copy")
+  button#copyButton.btn.btn-transform.btn-anim-staggering(type="button" title="copy" tabindex="0")
     i.fa-regular.fa-copy
-  button#listButton.btn.btn-transform.btn-anim-staggering(type="button" title="userlist")
+  button#listButton.btn.btn-transform.btn-anim-staggering(type="button" title="userlist" tabindex="0")
     i.fa-solid.fa-list
     
 block append content 
@@ -33,7 +33,7 @@ block append content
       .modal(role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1")
         .modal-header
           h2#modalTitle userlist
-          button.btn.modal-close#modalClose(type="button" title="close modal" aria-label="Close modal")
+          button.btn.modal-close#modalClose(type="button" title="close modal" aria-label="Close modal" tabindex="0")
             i.fa-solid.fa-xmark
         .modal-body
           ul.player-list

@@ -14,6 +14,11 @@
     animation: fadeInUnblur variables.$anim-time forwards;
     transition: transform variables.$anim-time,
         color variables.$anim-time;
+
+    &:focus-visible {
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px variables.$text-color;
+    }
 }
 
 @mixin btn-state-styles-color {
