@@ -155,7 +155,7 @@ function setupRefreshButton() {
 
 function setupCopyButton() {
   document.querySelector("#copyButton")?.addEventListener("click", async () => {
-    const clipboardText = `There are currently ${userCount} users online.`;
+    const clipboardText = `ts.0x29a.me:4711`;
     navigator.clipboard.writeText(clipboardText);
   });
 }
